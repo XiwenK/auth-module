@@ -1,0 +1,38 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="20230701_create_student_table.xml" author="Alexandr Manunin">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                <![CDATA[
+                        SELECT count(*)
+                            FROM information_schema.tables
+                        WHERE table_schema = 'public'
+                         AND table_name = 'students';
+                ]]>
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            create table STUDENTS
+            (
+            ID              bigserial    not null,
+            NAME            text         not null,
+            PHONE           text         not null
+            );
+
+            create unique index STUDENTS_uindex on STUDENTS (ID);
+
+            alter table STUDENTS add constraint STUDENTS_pk primary key (ID);
+
+            COMMENT ON TABLE STUDENTS IS 'Students table';
+
+            COMMENT ON COLUMN STUDENTS.ID             IS 'Students id';
+            COMMENT ON COLUMN STUDENTS.NAME           IS 'Students name';
+            COMMENT ON COLUMN STUDENTS.PHONE          IS 'Students phone';
+        </sql>
+        <rollback>
+            <dropTable tableName="STUDENTS"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

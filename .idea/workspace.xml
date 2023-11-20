@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cbc335ae-bb46-4c24-b56d-e2b8d49b9d91" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/AuthorizationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/MapperConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/PropertyConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/CalendarController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/GroupsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/ResourceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/ResourceTypeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/ScheduleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/ShortUrlController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/StudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/CalendarDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/GroupDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/GroupStudentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/GroupUrlDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/LoginResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/MessageResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/PrivilegeDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/ResourceDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/ResourceTypeDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/RoleDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/ScheduleDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/SignupRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/SortDirection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/SpaceDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/StudentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/exception/AuthErrorType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/exception/ResultType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/exception/SecurityException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/exception/ServiceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/CalendarMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/GroupMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/GroupStudentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/PrivilegeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/ResourceMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/RoleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/ScheduleMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/SpaceMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/StudentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/UserUniverseMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Calendar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/ERole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Group.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/GroupStudent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/GroupStudentId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Privilege.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Resource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/ResourceType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Schedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Space.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/CalendarRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/GroupRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/GroupStudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/PrivilegeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/ResourceRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/ScheduleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/SpaceRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/StudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/AuthEntryPointJwt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/JwtTokenProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/listener/AuthenticationFailureListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/CalendarService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/DatabaseUserDetailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/GroupService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/GroupStudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/LoginAttemptService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/ResourceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/ResourceTypeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/ScheduleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserDetailsImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/utils/RestUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220415_create_user_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220416_create_privilege_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220416_create_roles_privileges_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220416_create_roles_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220416_create_user_role_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220822_create_space_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220822_create_users_spaces_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220829_add_primary_key_space_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220901_add_desc_column_space_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20221016_replica_identity_add_roles_priveleges_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20221024_replica_identity_add_user_roles_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20221024_replica_identity_add_user_spaces_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230530_create_group_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230530_create_schedule_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230701_create_group_student_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230701_create_student_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230807_add_url_column_group_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230819_remove_comment_null_restriction_student_group_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230907_add_place_price_column_group_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230910_create_calendar_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230910_create_resource_table.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/changelog.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/changelog/changelog-master.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/.npmrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/babel.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/jsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/public/icons/favicon-128x128.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/public/icons/favicon-16x16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/public/icons/favicon-32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/public/icons/favicon-96x96.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/quasar.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/quasar.extensions.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/quasar.testing.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/assets/endless-constellation.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/assets/quasar-logo-vertical.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/boot/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/boot/global-components.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/boot/i18n.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/boot/router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/ConfirmationDialog.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/DialogItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/EssentialLink.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/buttons/ButtonCrud.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/buttons/ButtonIcon.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/buttons/ButtonIconList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/crud/CrudTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/dialogModal/DialogModal.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/dialogModal/dialogHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/linkPanel/LinkPanel.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/linkPanel/services/linkService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/page/FormPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/page/PageBody.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/page/PageFooter.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/page/PageHeader.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/page/PageHeaderBtnBack.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/page/PageLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/widgets/PercentWidget.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/widgets/WidgetPanel.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/css/app.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/css/override.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/css/quasar.variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/enums/cacheEnums.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/i18n/en-US/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/i18n/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/i18n/ru/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/layouts/MainLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/ErrorNotFound.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/GroupsList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/GroupsPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/RegForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/MobileRow.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/dictionaryService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/groupService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/IndexPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Login/LoginPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Login/service/authService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Places/PlacesList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Register/RegisterPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/ResourcesPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/components/ResourceDetailsPane.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/components/ResourcesList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/services/resourceService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/GroupDetailsPane.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/StudentsList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/services/studentService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/rest/apiClient.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/rest/crudHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/rest/endpoints.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/rest/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/router/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/router/routes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/settings/encryptionSetting.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/settings/projectSettings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/stores/group.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/stores/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/stores/store-flag.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/stores/useRouterConfig.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/stores/useViewSettings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/stores/user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/use/useGoBack.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/utils/auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/utils/cache/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/utils/cache/memory.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/utils/cache/persistent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/utils/cache/storageCache.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/utils/cipher.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/utils/env.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/utils/is.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/test/vitest/__tests__/DialogItem.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/test/vitest/__tests__/GroupsList.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/test/vitest/__tests__/LoginPage.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/test/vitest/__tests__/demo/ExampleComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/test/vitest/__tests__/demo/NotifyComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/test/vitest/setup-file.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/vitest.config.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/vue/src/css/app.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.yaml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/MapperConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/PropertyConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/SecurityConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="43" column="43" lean-forward="true" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/controller/AuthController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="43" lean-forward="true" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/controller/CalendarController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="111" column="58" selection-start-line="111" selection-start-column="58" selection-end-line="111" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/AuthorizationService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>rep</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/MapperConfiguration.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Profiles" type="6783ec58:MavenProjectsStructure$ProfilesNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="auth" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="auth" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="score" type="b2602c69:ProjectViewProjectNode" />
+              <item name="score" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="score" type="b2602c69:ProjectViewProjectNode" />
+              <item name="score" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="score" type="b2602c69:ProjectViewProjectNode" />
+              <item name="score" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="score" type="b2602c69:ProjectViewProjectNode" />
+              <item name="score" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="score" type="b2602c69:ProjectViewProjectNode" />
+              <item name="score" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="score" type="b2602c69:ProjectViewProjectNode" />
+              <item name="score" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="manunin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="score" type="b2602c69:ProjectViewProjectNode" />
+              <item name="score" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="manunin" type="462c0819:PsiDirectoryNode" />
+              <item name="score" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="score" type="b2602c69:ProjectViewProjectNode" />
+              <item name="score" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="android.sdk.path" value="D:/android" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1699897007515" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\manunin\projects\score" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="AuthorizationService" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="score" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.manunin.score.AuthorizationService" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cbc335ae-bb46-4c24-b56d-e2b8d49b9d91" name="Default Changelist" comment="" />
+      <created>1699894747466</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699894747466</updated>
+      <workItem from="1699894766955" duration="1488000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1488000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Designer" />
+      <window_info id="Image Layers" />
+      <window_info id="Capture Tool" />
+      <window_info id="UI Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Web" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Spring" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Java Enterprise" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" weight="0.3289689" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Maven" weight="0.32980332" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Bean Validation" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/vue/src/css/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="111" column="58" selection-start-line="111" selection-start-column="58" selection-end-line="111" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/AuthorizationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/MapperConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/PropertyConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/controller/CalendarController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/SecurityConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="43" column="43" lean-forward="true" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/manunin/score/controller/AuthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="43" lean-forward="true" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>41a8dd7285</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>score</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

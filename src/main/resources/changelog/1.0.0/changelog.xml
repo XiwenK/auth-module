@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <include relativeToChangelogFile="true" file="20220415_create_user_table.xml"/>
+    <include relativeToChangelogFile="true" file="20220416_create_privilege_table.xml"/>
+    <include relativeToChangelogFile="true" file="20220416_create_roles_table.xml"/>
+    <include relativeToChangelogFile="true" file="20220416_create_roles_privileges_table.xml"/>
+    <include relativeToChangelogFile="true" file="20220416_create_user_role_table.xml"/>
+    <include relativeToChangelogFile="true" file="20220822_create_space_table.xml"/>
+    <include relativeToChangelogFile="true" file="20220822_create_users_spaces_table.xml"/>
+    <include relativeToChangelogFile="true" file="20220829_add_primary_key_space_table.xml"/>
+    <include relativeToChangelogFile="true" file="20220901_add_desc_column_space_table.xml"/>
+    <include relativeToChangelogFile="true" file="20221016_replica_identity_add_roles_priveleges_table.xml"/>
+    <include relativeToChangelogFile="true" file="20221024_replica_identity_add_user_roles_table.xml"/>
+    <include relativeToChangelogFile="true" file="20221024_replica_identity_add_user_spaces_table.xml"/>
+    <include relativeToChangelogFile="true" file="20230530_create_schedule_table.xml"/>
+    <include relativeToChangelogFile="true" file="20230530_create_group_table.xml"/>
+    <include relativeToChangelogFile="true" file="20230701_create_student_table.xml"/>
+    <include relativeToChangelogFile="true" file="20230701_create_group_student_table.xml"/>
+    <include relativeToChangelogFile="true" file="20230807_add_url_column_group_table.xml"/>
+    <include relativeToChangelogFile="true" file="20230819_remove_comment_null_restriction_student_group_table.xml"/>
+    <include relativeToChangelogFile="true" file="20230907_add_place_price_column_group_table.xml"/>
+    <include relativeToChangelogFile="true" file="20230910_create_resource_table.xml"/>
+    <include relativeToChangelogFile="true" file="20230910_create_calendar_table.xml"/>
+</databaseChangeLog>

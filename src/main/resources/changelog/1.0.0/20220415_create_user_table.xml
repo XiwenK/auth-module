@@ -1,0 +1,43 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="20220415_create_user_table.xml" author="Alexandr Manunin">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                <![CDATA[
+                        SELECT count(*)
+                            FROM information_schema.tables
+                        WHERE table_schema = 'public'
+                         AND table_name = 'APP_USERS';
+                ]]>
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            create table APP_USERS
+            (
+            ID              bigserial    not null,
+            USERNAME        text         not null,
+            PASSWORD        text         not null,
+            EMAIL           text         not null,
+            IS_LOCKED       boolean      not null default false
+            );
+
+            create unique index APP_USERS_ID_uindex on APP_USERS (ID);
+            create unique index APP_USERS_USERNAME_uindex on APP_USERS (USERNAME);
+
+            alter table APP_USERS add constraint APP_USERS_pk primary key (ID);
+
+            COMMENT ON TABLE APP_USERS IS 'User table';
+
+            COMMENT ON COLUMN APP_USERS.ID            IS 'User id';
+            COMMENT ON COLUMN APP_USERS.USERNAME      IS 'User name (login)';
+            COMMENT ON COLUMN APP_USERS.PASSWORD      IS 'User password';
+            COMMENT ON COLUMN APP_USERS.EMAIL         IS 'User email';
+            COMMENT ON COLUMN APP_USERS.IS_LOCKED     IS 'Flag says if the user is locked';
+        </sql>
+        <rollback>
+            <dropTable tableName="APP_USERS"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

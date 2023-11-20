@@ -1,0 +1,41 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="20230701_create_group_student_table.xml" author="Alexandr Manunin">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                <![CDATA[
+                SELECT count(*)
+                FROM information_schema.tables
+                WHERE table_schema = 'public'
+                  AND table_name = 'GROUPS_STUDENTS';
+                ]]>
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            create table GROUPS_STUDENTS
+            (
+                GROUP_ID           bigserial         not null,
+                STUDENT_ID         bigserial         not null,
+                AMOUNT             int               not null,
+                PAID               boolean           not null,
+                COMMENT            text              not null
+            );
+
+            create unique index GROUPS_STUDENTS_GROUP_ID_STUDENT_ID_uindex on GROUPS_STUDENTS (GROUP_ID, STUDENT_ID);
+
+            COMMENT ON TABLE GROUPS_STUDENTS IS 'Groups students table';
+
+            COMMENT ON COLUMN GROUPS_STUDENTS.GROUP_ID          IS 'Group id';
+            COMMENT ON COLUMN GROUPS_STUDENTS.STUDENT_ID        IS 'Student id';
+            COMMENT ON COLUMN GROUPS_STUDENTS.AMOUNT            IS 'Amount to pay';
+            COMMENT ON COLUMN GROUPS_STUDENTS.PAID              IS 'Paid flag';
+            COMMENT ON COLUMN GROUPS_STUDENTS.COMMENT           IS 'Comment';
+
+        </sql>
+        <rollback>
+            <dropTable tableName="GROUPS_STUDENTS"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

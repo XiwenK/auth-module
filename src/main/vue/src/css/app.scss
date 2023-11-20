@@ -1,0 +1,129 @@
+$page-margin-x: 20px;
+$page-left-wigth: 350px;
+
+.main-layout{
+  & .q-item {
+    padding-left: 16px;
+    border-radius: 10px;
+  }
+
+  & .q-drawer-container:not(.q-drawer--mini-animate) .q-drawer--mini .q-item {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  & .q-drawer.q-drawer--left.q-drawer--mini{
+    width: 73px!important;
+  }
+
+  &__manu-button {
+    padding: 3px;
+  }
+
+  & .q-toolbar__title{
+    padding-left: 23px;
+  }
+}
+
+.page {
+  z-index: 2000;
+
+  @media (max-width: 1024px) {
+    &.page-desktop-right{
+      display: none;
+    }
+    &.page-desktop-right.active{
+      display: block;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 8px $page-margin-x;
+    position: absolute;
+    &.page-desktop-left{
+      width: $page-left-wigth !important;
+    }
+    &.page-desktop-right{
+      left: $page-left-wigth + $page-margin-x !important;
+      width: calc(100% - #{$page-left-wigth} - #{$page-margin-x} * 3) !important;
+    }
+  }
+
+  &-nudger {
+    //todo add height calculation here
+    transition: transform 0.4s;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.4s;
+      z-index: 2000;
+      pointer-events: none;
+    }
+
+    &.nudge-left {
+      transform: translateX(-60px);
+
+      &:after {
+        background: rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}
+
+.flex-grow-0{
+  flex-grow: 0;
+}
+
+.flex-grow-1{
+  flex-grow: 1;
+}
+
+//transitions
+.slideInRight, .slideOutRight {
+  animation-duration: 0.4s;
+  -webkit-animation-duration: 0.4s;
+  -moz-animation-duration: 0.4s;
+  -o-animation-duration: 0.4s;
+}
+
+.dialog-item .q-textarea .q-field__native{
+  resize: none;
+}
+
+.login-form {
+  padding: 20px;
+  border-radius: 10px;
+  background: linear-gradient(to top, #f2f2f2, #1976d2);
+  box-shadow: 0 0 10px rgb(25, 118, 210);
+
+  & .login-name {
+    color: white;
+    font-weight: bold;
+    top: 20%
+  }
+
+  & .register-name {
+    top: 10%;
+    color: white;
+    font-weight: bold;
+  }
+}
+
+.crud-table{
+  & .q-table__middle{
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  &.q-table--dense.mobile .q-table tbody tr.mobile-row{
+    height: 70px;
+  }
+}

@@ -1,0 +1,40 @@
+package com.manunin.score.mapper;
+
+import com.manunin.score.dto.SignupRequest;
+import com.manunin.score.model.ERole;
+import com.manunin.score.model.Role;
+import com.manunin.score.model.User;
+import com.manunin.score.repository.RoleRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Component
+public class UserMapper {
+
+    private final PasswordEncoder passwordEncoder;
+
+
+    public UserMapper(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public User fromDto(SignupRequest signUpRequest, final RoleRepository roleRepository) {
+        User user = new User(signUpRequest.getUsername(),
+                signUpRequest.getEmail(),
+                passwordEncoder.encode(signUpRequest.getPassword()));
+        Set<String> strRoles = signUpRequest.getRoles();
+        Set<Role> roles = new HashSet<>();
+        if (strRoles == null) {
+            Role userRole = roleRepository.findByName(ERole.USER.getName())
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> roleRepository.findByName(role).ifPresent(roles::add));
+        }
+        user.setRoles(roles);
+        return user;
+    }
+}

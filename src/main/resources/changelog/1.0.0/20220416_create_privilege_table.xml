@@ -1,0 +1,56 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="20220416_create_privilege_table.xml" author="Alexandr Manunin">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                <![CDATA[
+                        SELECT count(*)
+                            FROM information_schema.tables
+                        WHERE table_schema = 'public'
+                         AND table_name = 'PRIVILEGES';
+                ]]>
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            create table PRIVILEGES
+            (
+            ID              bigserial    not null,
+            NAME            text         not null
+            );
+
+            create unique index PRIVILEGES_ID_uindex on PRIVILEGES (ID);
+            create unique index PRIVILEGES_NAME_uindex on PRIVILEGES (NAME);
+
+            alter table PRIVILEGES add constraint PRIVILEGES_pk primary key (ID);
+
+            COMMENT ON TABLE PRIVILEGES IS 'Privileges table';
+
+            COMMENT ON COLUMN PRIVILEGES.ID        IS 'Privilege id';
+            COMMENT ON COLUMN PRIVILEGES.NAME      IS 'Privilege name';
+
+            INSERT INTO PRIVILEGES (name) VALUES ('ADMIN');
+
+            INSERT INTO PRIVILEGES (name) VALUES ('USERS_VIEW');
+            INSERT INTO PRIVILEGES (name) VALUES ('USERS_MODIFY');
+            INSERT INTO PRIVILEGES (name) VALUES ('USERS_DELETE');
+
+            INSERT INTO PRIVILEGES (name) VALUES ('ROLES_VIEW');
+            INSERT INTO PRIVILEGES (name) VALUES ('ROLES_MODIFY');
+            INSERT INTO PRIVILEGES (name) VALUES ('ROLES_DELETE');
+
+            INSERT INTO PRIVILEGES (name) VALUES ('COMPANIES_VIEW');
+            INSERT INTO PRIVILEGES (name) VALUES ('COMPANIES_MODIFY');
+            INSERT INTO PRIVILEGES (name) VALUES ('COMPANIES_DELETE');
+
+            INSERT INTO PRIVILEGES (name) VALUES ('LICENSES_VIEW');
+            INSERT INTO PRIVILEGES (name) VALUES ('LICENSES_MODIFY');
+            INSERT INTO PRIVILEGES (name) VALUES ('LICENSES_DELETE');
+
+        </sql>
+        <rollback>
+            <dropTable tableName="PRIVILEGES"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

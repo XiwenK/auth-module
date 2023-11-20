@@ -1,0 +1,21 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="20230807_add_url_column_group_table.xml" author="Alexandr Manunin">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                <![CDATA[
+                        SELECT count(*)
+                            FROM information_schema.tables
+                        WHERE table_schema = 'public'
+                         AND table_name = 'groups';
+                ]]>
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            alter table groups add url varchar(20);
+        </sql>
+        <rollback/>
+    </changeSet>
+</databaseChangeLog>

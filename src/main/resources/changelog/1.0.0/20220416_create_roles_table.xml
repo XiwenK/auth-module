@@ -1,0 +1,46 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="20220416_create_roles_table.xml" author="Alexandr Manunin">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                <![CDATA[
+                        SELECT count(*)
+                            FROM information_schema.tables
+                        WHERE table_schema = 'public'
+                         AND table_name = 'ROLES';
+                ]]>
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            create table ROLES
+            (
+            ID              bigserial    not null,
+            NAME            text         not null,
+            SYSTEM          boolean      not null   default false,
+            ACTIVE          boolean      not null   default true
+            );
+
+            create unique index ROLES_ID_uindex on ROLES (ID);
+            create unique index ROLES_NAME_uindex on ROLES (NAME);
+
+            alter table ROLES add constraint ROLES_pk primary key (ID);
+
+            COMMENT ON TABLE ROLES IS 'Roles table';
+
+            COMMENT ON COLUMN ROLES.ID        IS 'Role id';
+            COMMENT ON COLUMN ROLES.NAME      IS 'Role name';
+            COMMENT ON COLUMN ROLES.SYSTEM    IS 'Role system flag';
+            COMMENT ON COLUMN ROLES.ACTIVE    IS 'Role active flag';
+
+            INSERT INTO ROLES (name, system, active) VALUES ('ADMIN', true, true);
+            INSERT INTO ROLES (name, system, active) VALUES ('User role', true, true);
+            INSERT INTO ROLES (name, system, active) VALUES ('Moderator role', false, true);
+
+        </sql>
+        <rollback>
+            <dropTable tableName="ROLES"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

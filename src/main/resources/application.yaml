@@ -1,0 +1,24 @@
+server:
+  port: ${APP_PORT:9091}
+  servlet:
+    context-path: /api/v1
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: /changelog/changelog-master.xml
+    enabled: true
+#  jpa:
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+springdoc:
+    api-docs:
+        path: /api-docs
+    swagger-ui:
+      path: /swagger-ui.html
+app:
+  jwtSecret: secret
+  jwtExpirationInMs: 86400000

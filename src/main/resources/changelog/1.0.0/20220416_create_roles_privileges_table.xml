@@ -1,0 +1,38 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="20220416_create_roles_privileges_table.xml" author="Alexandr Manunin">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                <![CDATA[
+                        SELECT count(*)
+                            FROM information_schema.tables
+                        WHERE table_schema = 'public'
+                         AND table_name = 'ROLES_PRIVILEGES';
+                ]]>
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            create table ROLES_PRIVILEGES
+            (
+            ROLE_ID            bigserial         not null,
+            PRIVILEGE_ID       bigserial         not null
+            );
+
+            create unique index ROLES_PRIVILEGES_ROLE_ID_PRIVILEGE_ID_uindex on ROLES_PRIVILEGES (ROLE_ID, PRIVILEGE_ID);
+
+            COMMENT ON TABLE ROLES_PRIVILEGES IS 'Role privileges table';
+
+            COMMENT ON COLUMN ROLES_PRIVILEGES.PRIVILEGE_ID   IS 'Privilege id';
+            COMMENT ON COLUMN ROLES_PRIVILEGES.ROLE_ID        IS 'Role id';
+
+            INSERT INTO ROLES_PRIVILEGES (role_id, privilege_id)
+            SELECT roles.id, privileges.id from privileges INNER JOIN roles ON roles.name = privileges.name
+
+        </sql>
+        <rollback>
+            <dropTable tableName="ROLES_PRIVILEGES"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

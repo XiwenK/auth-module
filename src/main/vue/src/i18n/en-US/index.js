@@ -1,0 +1,190 @@
+export default {
+  appName: 'Groups',
+  groupsList: {
+    title: 'Groups',
+    groupDetailsTitle: 'Group details',
+    fields: {
+      id: 'Id',
+      name: 'Group Name',
+      date: 'Date',
+      placesCount: 'Places Count',
+      booked: 'Booked',
+      schedule: 'Schedule',
+      placePrice: 'Place Price'
+    },
+    dialog: {
+      header: {
+        add: 'Add group',
+        modify: 'Modify group'
+      },
+      validations: {
+        nameMustPresent: 'Group name must be set',
+        nameLength: 'Group name must be at least 3 characters long',
+        nameLengthMax: 'Group name must be less than 50 characters long',
+        dateMustPresent: 'Date must be set',
+        dateMustBeInFuture: 'Date must be in future',
+        placesCountMustPresent: 'Places count must be set',
+        placesCountMustBePositive: 'Places count must be positive',
+        placesCountMin: 'Places count must be at least 3',
+        placesCountMax: 'Places count must be less than 100',
+        bookedCannotBeMoreThanPlacesCount: 'Booked places count cannot be more than places count',
+        scheduleMustPresent: 'Schedule must be set'
+      },
+      confirmation: {
+        delete: 'Are you sure you want to delete this group?'
+      }
+    },
+    widget: {
+      paid: 'Paid',
+      booked: 'Booked'
+    }
+  },
+  studentsList: {
+    fields: {
+      id: 'Id',
+      name: 'Name',
+      phone: 'Phone',
+      amount: 'Amount',
+      comment: 'Comment',
+      paid: 'Paid'
+    },
+    dialog: {
+      header: {
+        add: 'Add student',
+        modify: 'Modify group'
+      },
+      validations: {
+        nameMustPresent: 'Student name must be set',
+        nameLength: 'Student name must be at least 3 characters long',
+        nameLengthMax: 'Student name must be less than 50 characters long',
+        phoneMustPresent: 'Phone must be set',
+        phoneLengthMax: 'Phone must be less than 12 characters long',
+        phoneMustBeNumber: 'Phone must be a number',
+        amountMustPresent: 'Amount must be set',
+        commentLengthMax: 'Comment must be less than 200 characters long',
+        amountMustBeNumber: 'Amount must be a number',
+      },
+      confirmation: {
+        delete: 'Are you sure you want to delete this student?'
+      }
+    },
+    buttons: {
+      add: 'Add student',
+    },
+    backButton: 'Groups',
+    exceptions: {
+      studentWithPhoneAndNumberAlreadyAdded: 'Student with this phone and number already added',
+      successfullyCreated: 'Student successfully created',
+      groupStudentNotFound: 'Group not found',
+      studentNotFound: 'Student not found',
+    }
+  },
+  resourcesList: {
+    title: 'Resources',
+    detailsTitle: 'Resource details',
+    fields: {
+      id: 'Id',
+      name: 'Name',
+      description: 'Description',
+      type: 'Type',
+      calendar: 'Calendar',
+      active: 'Active'
+    },
+    dialog: {
+      header: {
+        add: 'Add resource',
+        modify: 'Modify resource'
+      },
+      validations: {
+        nameMustPresent: 'Resource name must be set',
+        nameLength: 'Resource name must be at least 3 characters long',
+        nameLengthMax: 'Resource name must be less than 50 characters long',
+        descriptionMustPresent: 'Description must be set',
+        descriptionLengthMin: 'Description must be at least 3 characters long',
+        descriptionLengthMax: 'Description must be less than 200 characters long',
+        typeMustPresent: 'Type must be set',
+        calendarMustPresent: 'Calendar must be set',
+      },
+      confirmation: {
+        delete: 'Are you sure you want to delete this resource?'
+      }
+    },
+    deleteConfirmation: 'Are you sure you want to delete this resource?',
+    buttons: {
+      add: 'Add resource',
+    },
+  },
+  loginPage: {
+    fields: {
+      login: 'Username',
+      password: 'Password',
+      email: 'Email',
+      formTitle: 'Sign in',
+    },
+    validations: {
+      loginMustPresent: 'Login must be set',
+      mailMustPresent: 'Email must be set',
+      mailMustBeValid: 'Email must be valid',
+      passwordMustPresent: 'Password must be set',
+      passwordLength: 'Password must be between 8 and 20 characters long',
+      sessionExpired: 'Session expired',
+    },
+    registration: {
+      message: 'Don\'t have an account?',
+      button: 'Register',
+    }
+  },
+  registerPage: {
+    fields: {
+      login: 'Username',
+      password: 'Password',
+      email: 'Email',
+      formTitle: 'Register',
+      repeatPassword: 'Repeat password',
+      policy: 'By clicking "Register" you accept the terms of the User Agreement, Privacy Policy, and Cookie Policy of Groups'
+    },
+    validations: {
+      loginMustPresent: 'Login must be set',
+      emailMustPresent: 'Email must be set',
+      mailMustBeValid: 'Email must be valid',
+      passwordMustPresent: 'Password must be set',
+      passwordMustBeTheSame: 'Passwords must be the same',
+      loginMinLength: 'Login must be at least 3 characters long',
+      passwordComplexity: 'Invalid password. Please meet the requirements: 8 characters minimum, 1 digit, 1 letter, 1 special character',
+    },
+    button: 'Register',
+    successMessage: 'You have successfully registered'
+  },
+  linkPanel: {
+    noUrl: 'URL not exists',
+    urlCopied: 'URL is copied to clipboard',
+    invite: 'Invite to group:',
+  },
+  regForm: {
+    buttons: {
+      submit: 'Participate',
+    },
+    thanksMessage: 'Thank you for your participation!',
+  },
+  buttons: {
+    add: 'Add',
+    modify: 'Modify',
+    delete: 'Delete',
+    cancel: 'Cancel',
+    save: 'Save',
+    ok: 'Ok',
+    login: 'Login',
+    logout: 'Logout',
+  },
+  recordsPerPage: 'Records per page',
+  exceptions: {
+    tooManyLoginAttempts: 'Too many login attempts. Try again in 1 minute',
+    invalidCredentials: 'Invalid username or password',
+    emailAlreadyExists: 'Email already exists',
+    usernameAlreadyExists: 'Username already exists',
+  },
+  footerInfo: {
+    powered: 'Powered by Groups',
+  },
+  deleteConfirmation: "Are you sure you want to delete this item?"
+}
