@@ -17,16 +17,20 @@
     @request="load"
     :hide-pagination="hidePagination"
   >
-    <template v-if="!isMobile" v-slot:top-left>
+    <template v-if="!isMobile && showCrudButtons" v-slot:top-left>
       <button-crud
         v-if="canAdd"
         icon="add"
+        :compact="compactButtons"
+        :label="$t('buttons.add')"
         @click="goAdd"
       />
       <button-crud
         v-if="canModify"
         :disabled="!isModifyEnabled"
         icon="edit"
+        :compact="compactButtons"
+        :label="$t('buttons.modify')"
         @click="goModify"
         class="q-ml-sm"
       />
@@ -34,6 +38,8 @@
         v-if="canDelete"
         :disabled="!isDeleteEnabled"
         icon="delete"
+        :compact="compactButtons"
+        :label="$t('buttons.delete')"
         @click="deleteGroup(selected[0])"
         class="q-ml-sm"
       />
@@ -117,6 +123,14 @@ const props = defineProps({
   deleteMessage: {
     type: String,
     default: null
+  },
+  compactButtons: {
+    type: Boolean,
+    default: true
+  },
+  showCrudButtons: {
+    type: Boolean,
+    default: true
   }
 });
 const emit = defineEmits(['select', 'goAdd', 'goModify', 'delete'])
@@ -124,8 +138,11 @@ const {t} = useI18n();
 const $q = useQuasar();
 
 watch(() => props.filterProp, () => {
-  filter.value = props.filterProp;
-  selected.value = [];
+  // if (props.filterProp) {
+  console.log('filterProp', props.filterProp)
+    filter.value = props.filterProp;
+    selected.value = [];
+  // }
 });
 
 //state

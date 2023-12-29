@@ -20,16 +20,4 @@
 </script>
 
 <style scoped lang="scss">
-.page-header {
-  &__title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 14px;
-  }
-  &.desktop{
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-  }
-}
 </style>

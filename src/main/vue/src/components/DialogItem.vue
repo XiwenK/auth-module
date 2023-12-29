@@ -1,16 +1,22 @@
 <template>
   <div class="dialog-item">
-    <q-item v-if="type === 'string'">
+    <q-item v-if="type === 'string'"
+            dense>
       <q-item-section>
-        <q-input dense
+        <q-input densex
                  :label="label"
                  v-model="localVal"
                  lazy-rules="ondemand"
                  :prefix="prefix"
-                 :rules="rules"/>
+                 :rules="rules">
+          <template v-slot:append>
+            <slot/>
+          </template>
+        </q-input>
       </q-item-section>
     </q-item>
-    <q-item v-if="type === 'textarea'">
+    <q-item v-if="type === 'textarea'"
+            dense>
       <q-item-section>
         <q-input dense
                  :label="label"
@@ -45,7 +51,8 @@
         </q-input>
       </q-item-section>
     </q-item>
-    <q-item v-if="type === 'multiselect'">
+    <q-item v-if="type === 'multiselect'"
+            dense>
       <q-item-section>
         <q-select
           dense
@@ -62,7 +69,27 @@
         />
       </q-item-section>
     </q-item>
-    <q-item v-if="type === 'select'">
+    <q-item v-if="type === 'multiselectWithAdd'"
+            dense>
+      <q-item-section>
+        <q-select
+          dense
+          :label="label"
+          v-model="localVal"
+          use-input
+          use-chips
+          multiple
+          input-debounce="0"
+          :options="filterOptions"
+          @filter="filterOpt"
+          @new-value="createValue"
+          lazy-rules="ondemand"
+          :rules="rules"
+        />
+      </q-item-section>
+    </q-item>
+    <q-item v-if="type === 'select'"
+            dense>
       <q-item-section>
         <q-select
           dense
@@ -75,7 +102,8 @@
         />
       </q-item-section>
     </q-item>
-    <q-item v-if="type === 'toggler'" class="row">
+    <q-item v-if="type === 'toggler'" class="row"
+            dense>
       <q-item-section input-class="text-right">
         <q-toggle
           :label="label"
@@ -84,7 +112,8 @@
         />
       </q-item-section>
     </q-item>
-    <q-item v-if="type === 'date'" class="row">
+    <q-item v-if="type === 'date'" class="row"
+            dense>
       <q-item-section>
         <q-input dense
                  :label="label"
@@ -107,7 +136,8 @@
         </q-input>
       </q-item-section>
     </q-item>
-    <q-item v-if="type === 'number'" class="row">
+    <q-item v-if="type === 'number'" class="row"
+            dense>
       <q-item-section>
         <q-input dense
                  :label="label"
@@ -130,6 +160,10 @@
     const emit = defineEmits(['update:modelValue']);
 
     const localVal = ref(props.modelValue);
+    watch(() => props.modelValue, (newVal) => {
+        localVal.value = newVal;
+    });
+
     const proxyDate = ref(props.modelValue);
 
     watch(localVal, (newVal) => {
@@ -138,8 +172,12 @@
 
     const filterOptions = ref(props.options);
 
+    watch(() => props.options, (newVal) => {
+      filterOptions.value = newVal;
+    });
+
     const inputDate = ref('');
-    function filterOpt(val, update) {
+    const filterOpt = (val, update) =>  {
         update(() => {
             if (val === '') {
                 filterOptions.value = props.options
@@ -150,6 +188,14 @@
                 )
             }
         })
+    }
+
+    const createValue = (val, done) => {
+      if (val.length > 2) {
+        if (!props.options.includes(val)) {
+          done(val, 'add')
+        }
+      }
     }
 
     const formattedDate = computed(() => {

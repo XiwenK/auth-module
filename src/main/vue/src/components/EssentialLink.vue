@@ -1,7 +1,7 @@
 <template>
   <q-item
     clickable
-    :class="{'bg-grey-4': isSelected}"
+    :class="{'bg-primary': isSelected}"
   >
     <q-item-section
       v-if="icon"

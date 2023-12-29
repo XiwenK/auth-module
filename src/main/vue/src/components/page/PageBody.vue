@@ -1,5 +1,5 @@
 <template>
-  <div ref="pageBodyRef" style="flex-grow: 1">
+  <div ref="pageBodyRef" style="flex-grow: 1" class="page-body">
     <q-scroll-area
       class="full-height"
       :vertical-thumb-style="{zIndex: 3}"

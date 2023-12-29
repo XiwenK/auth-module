@@ -2,7 +2,7 @@
   <page-layout class="page-desktop-right">
     <page-header>
       <template #title>
-        {{$t('groupsList.groupDetailsTitle')}}
+        {{ $t('groupsList.groupDetailsTitle') }}
       </template>
       <template #buttons-left>
         <page-header-btn-back
@@ -11,23 +11,34 @@
       </template>
     </page-header>
     <page-body>
-          <div class="column no-wrap full-height full-width absolute">
-            <div>
-              <link-panel
-                :class="isMobile ? 'q-pa-sm' : 'q-pa-sm'"
-                :group="group"
-              />
-              <widget-panel
-                :widgets = "widgets"
-                :class="isMobile ? 'q-pa-sm' : 'q-pa-sm'"/>
-            </div>
-            <students-list
-              class="full-height"
-              :class="desktopClasses"
-              style="min-height: 100px"
-              :group="group"
-            />
+      <div class="flex row full-height full-width absolute">
+        <div class="col-4 q-pa-md">
+          <div class="text-h6">
+            Suspicious students
           </div>
+          <div class="q-pa-md">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias asperiores atque autem
+          </div>
+          <div class="q-pa-md">
+            Risk value: 0.5
+          </div>
+          <div class="q-pa-md">
+            Active: yes
+          </div>
+          <div>
+            <div class="text-h6">
+              Statistics
+            </div>
+          </div>
+        </div>
+        <div class="col-8">
+          <q-scroll-area  id="formula" class="q-pa-md items-center full-height full-width">
+            <rule-condition
+              :value="ruleConditions"
+              @update="updateValue($event)"/>
+          </q-scroll-area>
+        </div>
+      </div>
     </page-body>
   </page-layout>
 </template>
@@ -40,7 +51,8 @@ import WidgetPanel from "components/widgets/WidgetPanel.vue";
 import {useQuasar} from "quasar";
 import {useGroupStore} from "stores/group";
 
-import {computed, defineComponent, defineProps} from 'vue';
+import {computed, defineComponent, defineProps, ref} from 'vue';
+import RuleCondition from "pages/Students/components/RuleCondition.vue";
 
 defineComponent({StudentsList, LinkPanel, WidgetPanel});
 
@@ -53,6 +65,75 @@ const groupStore = useGroupStore();
 const desktopClasses = computed(() => {
   return isMobile.value ? [] : ['q-pa-sm'];
 })
+
+const updateValue = (event) => {
+  ruleConditions.value = event;
+}
+
+const ruleConditions = ref(
+  [
+      {name: "AND", key: 1},
+      {name: "Time between 10:00 and 12:00", key: 2},
+      {name: "Country = France", key: 3},
+      [
+        {name: "OR", key: 4},
+        {name: "Time between 10:00 and 12:00", key: 5},
+        {name: "Country = France", key: 6},
+        [
+          {name: "OR", key: 4},
+          {name: "Time between 10:00 and 12:00", key: 5},
+          {name: "Country = France", key: 6},
+        ],
+        [
+          {name: "OR", key: 4},
+          {name: "Time between 10:00 and 12:00", key: 5},
+          {name: "Country = France", key: 6},
+        ],
+        [
+          {name: "OR", key: 4},
+          {name: "Time between 10:00 and 12:00", key: 5},
+          {name: "Country = France", key: 6},
+        ],
+        [
+          {name: "OR", key: 4},
+          {name: "Time between 10:00 and 12:00", key: 5},
+          [
+            {name: "OR", key: 4},
+            {name: "Time between 10:00 and 12:00", key: 5},
+            {name: "Country = France", key: 6},
+          ],
+        ]
+      ],
+      [
+      {name: "OR", key: 4},
+      {name: "Time between 10:00 and 12:00", key: 5},
+      {name: "Country = France", key: 6},
+      [
+        {name: "OR", key: 4},
+        {name: "Time between 10:00 and 12:00", key: 5},
+        {name: "Country = France", key: 6},
+      ],
+      [
+        {name: "OR", key: 4},
+        {name: "Time between 10:00 and 12:00", key: 5},
+        {name: "Country = France", key: 6},
+      ],
+      [
+        {name: "OR", key: 4},
+        {name: "Time between 10:00 and 12:00", key: 5},
+        {name: "Country = France", key: 6},
+      ],
+      [
+        {name: "OR", key: 4},
+        {name: "Time between 10:00 and 12:00", key: 5},
+        [
+          {name: "OR", key: 4},
+          {name: "Time between 10:00 and 12:00", key: 5},
+          {name: "Country = France", key: 6},
+        ],
+      ]
+    ]
+  ]);
 
 const widgets = computed(() => {
   const studentsPaid = groupStore.getSelectedStudentList?.reduce((acc, curr) => {
@@ -86,5 +167,6 @@ const widgets = computed(() => {
   ]
 })
 </script>
-<style>
+<style scoped lang="scss">
+
 </style>

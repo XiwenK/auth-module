@@ -4,6 +4,20 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
+        path: '/channels',
+        component: () => import('pages/Channels/ChannelPage.vue'),
+        children: [
+          {
+            path: '/channels/:channelId',
+            component: () => import('pages/Channels/components/ChannelDetailsPane.vue'),
+          }
+        ]
+      },
+      {
+        path: '/transactions',
+        component: () => import('pages/Transactions/TransactionPage.vue'),
+      },
+      {
         path: '/groups',
         component: () => import('pages/Groups/GroupsPage.vue'),
         children: [

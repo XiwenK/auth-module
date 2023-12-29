@@ -1,10 +1,13 @@
-//drawer
-//.q-drawer-container:not(.q-drawer--mini-animate) .q-drawer--mini .q-item__label,
-//.q-drawer-container:not(.q-drawer--mini-animate) .q-drawer--mini .q-item__section--main,
-//.q-drawer-container:not(.q-drawer--mini-animate) .q-drawer--mini .q-item__section--side ~ .q-item__section--side {
-//  display: flex;
-//}
+//.q-tab-panel
+.mapping-pane .q-tab-panel{
+  padding: 0;
+}
 
+.chips .q-icon.q-btn-dropdown__arrow.q-btn-dropdown__arrow-container{
+  display: none;
+}
 
-//mobile row
-
+.chips.q-btn{
+  min-height: 0;
+  padding: 2px 4px;
+}

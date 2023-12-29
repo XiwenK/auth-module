@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf" style="height: 100vh" class="main-layout">
+  <q-layout view="lHh lpR fFf" style="height: 100vh" class="main-layout">
     <q-header
       class="header"
       v-if="!isMobile"
@@ -31,7 +31,6 @@
       </q-toolbar>
     </q-header>
     <q-drawer
-      class="q-pa-sm"
       v-if="$route.path !== '/login'"
       v-model="leftDrawerOpen"
       side="left"

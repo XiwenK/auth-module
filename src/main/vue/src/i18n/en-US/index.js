@@ -1,5 +1,104 @@
 export default {
   appName: 'Groups',
+  channelsList: {
+    title: 'Channels',
+    channelDetailsTitle: 'Channel details',
+    fields: {
+      id: 'Id',
+      name: 'Channel Name',
+      description: 'Description',
+      isActive: 'Is Active',
+    },
+    dialog: {
+      header: {
+        add: 'Add channel',
+        modify: 'Modify channel'
+      },
+      validations: {
+        nameMustPresent: 'Channel name must be set',
+        nameLength: 'Channel name must be at least 3 characters long',
+        nameLengthMax: 'Channel name must be less than 50 characters long'
+      },
+      confirmation: {
+        delete: 'Are you sure you want to delete this channel?'
+      }
+    },
+  },
+  transactionsList: {
+    id: 'Id',
+    amount: 'Amount',
+    date: 'Date',
+    comment: 'Comment',
+    terminal: 'Terminal',
+    card: 'Card',
+    merchant: 'Merchant',
+    mcc: 'MCC',
+    currency: 'Currency',
+    respCode: 'Resp Code',
+  },
+  mappingsList: {
+    title: 'Mappings',
+    channelDetailsTitle: 'Mappings details',
+    fields: {
+      id: 'Id',
+      field: 'Field',
+      attribute: 'Attribute',
+      description: 'Description',
+      type: 'Type',
+      stringFunctions: 'String Functions',
+      dateFormat: 'Date Format',
+      fromValue: 'Value to replace',
+      toValue: 'Value to replace with',
+      isMandatory: 'Is Mandatory',
+      startIndex: 'Start Index',
+      endIndex: 'End Index',
+      isNominal: 'Is Nominal',
+      currencyFrom: 'Currency From',
+      currencyField: 'Currency Field',
+      currencyFromRegister: 'Currency From Register',
+      currencyToRegister: 'Convert to currency',
+      concatDelimiter: 'Concat Delimiter',
+      isActive: 'Is Active',
+    },
+    dialog: {
+      header: {
+        add: 'Add mapping',
+        modify: 'Modify mapping'
+      },
+      validations: {
+        fieldMustPresent: 'Field must be set',
+        fieldLength: 'Field must be at least 3 characters long',
+        fieldLengthMax: 'Field must be less than 50 characters long',
+        attributeMustPresent: 'Attribute must be set',
+        attributeLength: 'Attribute must be at least 3 characters long',
+        attributeLengthMax: 'Attribute must be less than 50 characters long',
+        descriptionLengthMax: 'Description must be less than 200 characters long',
+        typeMustPresent: 'Type must be set',
+        dateFormatMustPresent: 'Date format must be set',
+        fromValueMustPresent: 'Value to replace must be set',
+        fromValueLength: 'Value to replace must be at least 3 characters long',
+        fromValueLengthMax: 'Value to replace must be less than 50 characters long',
+        toValueMustPresent: 'Value to replace with must be set',
+        toValueLength: 'Value to replace with must be at least 3 characters long',
+        toValueLengthMax: 'Value to replace with must be less than 50 characters long',
+        isMandatoryMustPresent: 'Is mandatory must be set',
+        startIndexMustPresent: 'Start index must be set',
+        startIndexMustBeNumber: 'Start index must be a number',
+        endIndexMustBeNumber: 'End index must be a number',
+        endIndexMustBeGreaterThanStartIndex: 'End index must be greater than start index',
+        isNominalMustPresent: 'Is nominal must be set',
+        currencyFromMustPresent: 'Currency from must be set',
+        currencyFieldMustPresent: 'Currency field must be set',
+        currencyFromRegisterMustPresent: 'Currency from register must be set',
+        concatDelimiterMustPresent: 'Concat delimiter must be set',
+        concatDelimiterLengthMax: 'Concat delimiter must be less than 3 characters long',
+        stringFunctionsMustPresent: 'String functions must be set',
+      },
+      confirmation: {
+        delete: 'Are you sure you want to delete this mapping?'
+      }
+    },
+  },
   groupsList: {
     title: 'Groups',
     groupDetailsTitle: 'Group details',

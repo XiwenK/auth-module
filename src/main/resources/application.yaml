@@ -4,7 +4,7 @@ server:
     context-path: /api/v1
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/manunin
     driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: /changelog/changelog-master.xml
