@@ -7,7 +7,7 @@
     :icon="props.icon"
     dense
     unelevated
-    style="padding-left: 10px; padding-right: 10px"
+    style="padding-left: 10px; padding-right: 10px;"
     color="primary"
   />
   <q-btn
@@ -19,7 +19,7 @@
     :icon="props.icon"
     dense
     unelevated
-    style="padding-left: 10px; padding-right: 10px"
+    style="padding-left: 10px; padding-right: 10px; min-width: 100px"
     color="primary"
   />
 </template>

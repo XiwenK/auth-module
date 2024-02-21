@@ -76,7 +76,7 @@ module.exports = configure(function (/* ctx */) {
         API_URL:
           process.env.NODE_ENV === "production"
             ? "https://groups.manunin.com/api/v1"
-            : "http://localhost:9091/api/v1",
+            : "http://localhost:9092/api/v1",
         REG_URL: 'groups.manunin.com/reg/',
         GLOBAL_APP_NAME: 'replace',
       },

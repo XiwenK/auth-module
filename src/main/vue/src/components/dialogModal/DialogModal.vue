@@ -1,6 +1,6 @@
 <template>
   <q-dialog v-model="localVisible" @hide="onHide">
-    <q-card style="width: 400px">
+    <q-card :style="{'width': width }">
 
       <q-card-section>
         <div class="text-h6">
@@ -37,6 +37,10 @@ const props = defineProps({
   title: {
     type: String,
     default: 'Dialog title'
+  },
+  width: {
+    type: String,
+    default: '600px'
   }
 });
 

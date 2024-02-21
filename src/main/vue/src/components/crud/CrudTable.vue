@@ -67,7 +67,7 @@
 import {QBtn, QTable, useQuasar} from 'quasar';
 import {computed, defineComponent, defineEmits, defineExpose, defineProps, onMounted, ref, unref, watch,} from 'vue';
 import ConfirmationDialog from 'components/ConfirmationDialog.vue';
-import GroupMobileRow from "pages/Groups/components/MobileRow.vue";
+import GroupMobileRow from "components/table/MobileRow.vue";
 import ButtonCrud from "components/buttons/ButtonCrud.vue";
 import {useI18n} from 'vue-i18n';
 import crudHelper from 'src/rest/crudHelper.js';

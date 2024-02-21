@@ -23,7 +23,7 @@ const routes = [
         children: [
           {
             path: '/groups/:groupId',
-            component: () => import('pages/Students/GroupDetailsPane.vue'),
+            component: () => import('pages/Groups/components/GroupsDetailsPane.vue'),
           }
         ]
       },

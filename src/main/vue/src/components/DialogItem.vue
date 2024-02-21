@@ -3,7 +3,8 @@
     <q-item v-if="type === 'string'"
             dense>
       <q-item-section>
-        <q-input densex
+        <q-input dense
+                 input-style="inputStyle"
                  :label="label"
                  v-model="localVal"
                  lazy-rules="ondemand"
@@ -156,7 +157,7 @@
 
     const { t } = useI18n();
 
-    const props = defineProps(['modelValue', 'type', 'label', 'suffix', 'rules', 'options', 'lazy-rules', 'dateFormat', 'showTime', 'prefix', 'disable']);
+    const props = defineProps(['modelValue', 'type', 'label', 'suffix', 'rules', 'options', 'lazy-rules', 'dateFormat', 'showTime', 'prefix', 'disable', 'inputStyle']);
     const emit = defineEmits(['update:modelValue']);
 
     const localVal = ref(props.modelValue);

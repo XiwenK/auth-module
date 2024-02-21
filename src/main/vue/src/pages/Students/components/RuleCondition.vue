@@ -1,22 +1,22 @@
 <template>
   <div class="q-pt-xs full-width">
     <template v-if="operation.expanded">
-      <div v-if="['AND', 'OR', 'NOT'].includes(operation.name)"
+      <div v-if="['AND', 'OR', 'NOT', '+','-','MINUS'].includes(operation.name)"
            class="flex items-center q-pl-sm full-width"
            @dragover="dragEnter($event)"
            @dragleave="dropZoneActive = false"
            @drop="drop($event)">
-        <div class="flex items-center justify-between full-width">
-          <div>
+        <div class="hover-trigger flex items-center justify-between full-width">
+          <div class="flex">
             <q-btn
               unelevated
               dense
               icon="close"
               @click="removeCondition(0, true)"
-              class="q-pr-sm text-grey"
-              style="font-size: 8px"/>
+              class="visible-on-hover q-pr-sm text-grey"
+              style="font-size: 8px; min-width: 25px"/>
             <q-btn-dropdown
-              class="bg-primary text-white chips"
+              class="hold-place-no-hover bg-primary text-white chips"
               style="width: unset; min-height: 35px"
               :label="operation.name"
               unelevated
@@ -55,7 +55,7 @@
               </q-list>
             </q-btn-dropdown>
           </div>
-          <div class="flex items-center">
+          <div class="visible-on-hover items-center">
             <div class="q-ml-md">
               <q-btn-dropdown
                 class="text-grey"
@@ -63,7 +63,7 @@
                 no-icon-animation
                 dense
                 dropdown-icon="add"
-                style="font-size: 8px">
+                style="font-size: 10px">
                 <q-list dense>
                   <q-item clickable v-close-popup @click="addCondition(0)">
                     <q-item-section>
@@ -80,7 +80,7 @@
             </div>
             <q-btn
               class="q-ml-md text-grey"
-              style="font-size: 8px"
+              style="font-size: 10px"
               dense
               :icon="operation.expanded ? 'expand_less' : 'expand_more'"
               unelevated
@@ -98,20 +98,29 @@
              class="group q-pl-md full-width">
           <div class="flex no-wrap full-width">
             <div v-if="!isArray(condition)"
-                 class="flex items-center q-pl-sm q-pt-xs"
+                 class="hover-trigger flex items-center q-pl-sm q-pt-xs justify-between no-wrap full-width"
                  draggable="true"
                  @dragstart="dragStart($event, condition, index)">
+              <div class="flex">
+                <q-btn
+                  :disable="localVal.length <= 2"
+                  unelevated
+                  dense
+                  icon="close"
+                  @click="removeCondition(index)"
+                  class="visible-on-hover q-pr-sm text-grey"
+                  style="font-size: 8px; min-width: 25px"/>
+                <div class="hold-place-no-hover q-px-sm bg-secondary text-white chips">
+                  {{ condition.name }}
+                </div>
+              </div>
               <q-btn
-                :disable="localVal.length <= 2"
                 unelevated
                 dense
-                icon="close"
-                @click="removeCondition(index)"
-                class="q-pr-sm text-grey"
-                style="font-size: 8px"/>
-              <div class="q-px-sm bg-secondary text-white chips">
-                {{ condition.name }}
-              </div>
+                icon="edit"
+                @click="isConditionDialogVisisble = true"
+                class="visible-on-hover text-grey q-ml-sm"
+                style="font-size: 10px"/>
             </div>
             <div v-else class="full-width">
               <rule-condition :value=condition
@@ -123,7 +132,7 @@
       </div>
     </template>
     <template v-else>
-      <div class="flex q-pl-sm no-wrap full-width justify-between"
+      <div class="hover-trigger flex q-pl-sm no-wrap full-width justify-between"
           draggable="true"
            @dragstart="dragStart($event, localVal)">
         <div class="flex items-center">
@@ -132,23 +141,23 @@
             dense
             icon="close"
             @click="removeCondition(0, true)"
-            class="q-pr-sm text-grey"
+            class="visible-on-hover q-pr-sm text-grey"
             style="font-size: 8px; min-height: 35px"/>
-          <div class="q-pa-sm bg-secondary text-white chips">
+          <div class="hold-place-no-hover q-pa-sm bg-secondary text-white chips">
             {{ calcDesc }}
           </div>
         </div>
-        <div class="flex items-center">
+        <div class="visible-on-hover items-center">
           <q-btn
             unelevated
             dense
             icon="edit"
             @click="prompt=true"
             class="text-grey q-ml-sm"
-            style="font-size: 8px"/>
+            style="font-size: 10px"/>
           <q-btn
             class="q-ml-md text-grey"
-            style="font-size: 8px"
+            style="font-size: 10px"
             dense
             :icon="operation.expanded ? 'expand_less' : 'expand_more'"
             unelevated
@@ -174,11 +183,13 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+    <rule-check :is-dialog-visible="isConditionDialogVisisble" :check="selectedCheck" @close="isConditionDialogVisisble = false"/>
   </div>
 </template>
 
 <script setup>
 import {defineProps, defineEmits, ref, watch, computed} from 'vue';
+import RuleCheck from "pages/Students/components/RuleCheck.vue";
 
 const props = defineProps(['value']);
 const emit = defineEmits(['update', 'remove', 'start-dragging', 'stop-dragging' ]);
@@ -271,6 +282,9 @@ const calcDesc = computed(() => {
 const generateKey = () => {
   return Math.floor(Math.random() * 1000000);
 }
+
+const isConditionDialogVisisble = ref(false);
+const selectedCheck = ref({});
 
 </script>
 

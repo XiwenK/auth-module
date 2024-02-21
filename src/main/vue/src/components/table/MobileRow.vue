@@ -10,7 +10,7 @@
           :key="column.name"
           :props="data"
           style="white-space: break-spaces; z-index: 1"
-          :style="`transform: translateX(${rowOffset}px); transition: transform 0.3s, background-color 0.3s; background-color: white`">
+          :style="tdStyle">
       <slot :name="column.name" :row="row" :column="column">
         {{ row[column.name] }}
       </slot>
@@ -58,6 +58,14 @@ watch(() => props.selected, (newVal) => {
 watch(() => props.data, (newVal) => {
   updateRowHeight();
 });
+
+const tdStyle = computed(() => {
+  return {
+    transform: `translateX(${rowOffset.value}px)`,
+    transition: 'transform 0.3s, background-color 0.3s',
+    backgroundColor: 'white',
+  }
+})
 
 const isMobile = computed(() => $q.screen.lt.md);
 
