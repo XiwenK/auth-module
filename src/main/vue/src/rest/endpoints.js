@@ -14,5 +14,4 @@ export default {
   shortUrlsGetGroupUrl: '/shortUrls/getGroupUrl',
   resources: '/resources',
   resourcesCount: '/resources/resourcesCount',
-
 }
