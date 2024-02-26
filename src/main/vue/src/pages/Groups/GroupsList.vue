@@ -6,7 +6,7 @@
       </template>
     </page-header>
     <page-body>
-        <div id="groups" class="full-height full-width absolute">
+        <div id="groups" class="fit absolute">
           <crud-table
             ref="groupTable"
             :can-add="canCreate"
@@ -26,13 +26,8 @@
                 {{row.name}}
               </div>
               <div class="flex justify-start">
-                <div class="text-caption">
-                  <q-badge
-                    :color="bookedColor(row)"
-                    :label="bookedToTotalString(row)"/>
-                </div>
-                <div class="q-pl-md">
-                  <q-badge color="blue" :label="scheduleLabel(row)"/>
+                <div>
+                  <q-badge color="blue" :label="row.desc"/>
                 </div>
               </div>
             </template>
@@ -48,34 +43,12 @@
                            :rules="[  val => !!val || $t('groupsList.dialog.validations.nameMustPresent'),
                                 val => val.length >= 3 || $t('groupsList.dialog.validations.nameLength'),
                                 val => val.length <= 50 || $t('groupsList.dialog.validations.nameLengthMax') ]"/>
-              <dialog-item :label="$t('groupsList.fields.date')"
-                           type="date"
-                           :date-format="dateFormat"
-                           v-model="model['dateTime']"
-                           :rules="[  val => !!val || $t('groupsList.dialog.validations.dateMustPresent'),
-                                val => modify || moment(val, dateFormat).isAfter(moment()) || $t('groupsList.dialog.validations.dateMustBeInFuture')]"/>
-              <dialog-item :label="$t('groupsList.fields.placesCount')"
-                           type="number"
-                           left-label
-                           v-model="model['placesCount']"
-                           :rules="[  val => !!val || $t('groupsList.dialog.validations.placesCountMustPresent'),
-                                val => val > 0 || $t('groupsList.dialog.validations.placesCountMin'),
-                                val => val <= 100 || $t('groupsList.dialog.validations.placesCountMax')  ]"/>
-              <dialog-item :label="$t('groupsList.fields.booked')"
-                           type="number"
-                           left-label
-                           v-model="model['booked']"
-                           :rules="[  val => val <= model['placesCount'] || $t('groupsList.dialog.validations.bookedCannotBeMoreThanPlacesCount')]"/>
-              <dialog-item :label="$t('groupsList.fields.placePrice')"
-                           type="number"
-                           left-label
-                           v-model="model['placePrice']"/>
-              <dialog-item :label="$t('groupsList.fields.schedule')"
-                           :options="schedules"
-                           type="select"
-                           left-label
-                           v-model="model['schedule']"
-                           :rules="[  val => !!val || $t('groupsList.dialog.validations.scheduleMustPresent')]"/>
+              <dialog-item :label="$t('groupsList.fields.desc')"
+                           type="string"
+                           v-model="model['desc']"
+                           :rules="[  val => !!val || $t('groupsList.dialog.validations.nameMustPresent'),
+                                val => val.length >= 3 || $t('groupsList.dialog.validations.nameLength'),
+                                val => val.length <= 50 || $t('groupsList.dialog.validations.nameLengthMax') ]"/>
             </q-list>
           </dialog-modal>
         </div>
@@ -161,38 +134,17 @@ const columns = computed(() => [
     sortable: true,
   },
   {
-    name: 'dateTime',
-    label: t('groupsList.fields.date'),
+    name: 'desc',
+    label: t('groupsList.fields.desc'),
     align: 'left',
-    field: 'dateTime',
+    field: 'desc',
     sortable: true,
   },
   {
-    name: 'placesCount',
-    label: t('groupsList.fields.placesCount'),
+    name: 'status',
+    label: t('groupsList.fields.status'),
     align: 'left',
-    field: 'placesCount',
-    sortable: true,
-  },
-  {
-    name: 'booked',
-    label: t('groupsList.fields.booked'),
-    align: 'left',
-    field: 'booked',
-    sortable: true,
-  },
-  {
-    name: 'placePrice',
-    label: t('groupsList.fields.placePrice'),
-    align: 'left',
-    field: 'placePrice',
-    sortable: true,
-  },
-  {
-    name: 'schedule',
-    label: t('groupsList.fields.schedule'),
-    align: 'left',
-    field: 'scheduleLabel',
+    field: 'status',
     sortable: true,
   }
 ]);
@@ -212,13 +164,6 @@ const visibleColumns = computed(() => {
   // return columns.value.filter(column => !isMobile.value || column.name === 'name' || column.name === 'dateTime')?.map(column => column.name);
   return columns.value.filter(column => column.name === 'name' || column.name === 'dateTime')?.map(column => column.name);
 });
-
-
-const scheduleLabel = (row) => row.schedule?.label || '';
-const bookedToTotalString = (row) => `${row.booked}/${row.placesCount}`;
-const bookedToTotalPercent = (row) => row.placesCount === 0 ? 0 : row.booked / row.placesCount * 100;
-const bookedColor = (row) => bookedToTotalPercent(row) > 80 ? 'positive' : bookedToTotalPercent(row) > 40 ? 'info' : 'negative';
-
 
 const onSelect = (row) => {
   model.value = {...row};

@@ -70,6 +70,10 @@ $grey: hsl(50, 80%, 50%);
       left: $page-left-wigth + $page-margin-x !important;
       width: calc(100% - #{$page-left-wigth} - #{$page-margin-x} * 3) !important;
     }
+    &.page-desktop-right.single {
+      left: 0 !important;
+      width: calc(100% - #{$page-margin-x} * 2) !important;
+    }
   }
 
   &-nudger {

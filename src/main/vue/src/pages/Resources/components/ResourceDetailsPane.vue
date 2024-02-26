@@ -1,5 +1,5 @@
 <template>
-  <page-layout class="page-desktop-right">
+  <page-layout class="page-desktop-right single">
     <page-header>
       <template #title>
         {{$t('resourcesList.detailsTitle')}}

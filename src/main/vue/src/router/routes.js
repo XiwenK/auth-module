@@ -28,8 +28,8 @@ const routes = [
         ]
       },
       {
-        path: '/resources',
-        component: () => import('pages/Resources/ResourcesPage.vue'),
+        path: '/users',
+        component: () => import('pages/Resources/UserPage.vue'),
       },
       { path: '/login', component: () => import('pages/Login/LoginPage.vue') },
       { path: '/register', component: () => import('pages/Register/RegisterPage.vue') },
@@ -37,7 +37,7 @@ const routes = [
       // { path: '/orders', component: () => import('pages/Orders/OrdersPage.vue')},
     ]
   },
-  { path: '/reg/:shortUrl', component: () => import('pages/Groups/RegForm.vue') },
+
   // Always leave this as last one,
   // but you can also remove it
   {

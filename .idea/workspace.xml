@@ -4,32 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d38cf51-7ae4-40f3-84ca-fa67222e1872" name="Changes" comment="first">
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/assets/edit.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/RuleInfo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/RulesList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/ruleService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/ArithmeticCheck.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/AttributeOperand.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/CaseSensetive.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/ConstantCheck.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/ListCheck.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/RuleCheck.vue" afterDir="false" />
+    <list default="true" id="2d38cf51-7ae4-40f3-84ca-fa67222e1872" name="Changes" comment="Description is fixed">
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/buttons/AddMobileButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/quasar.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/quasar.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/DialogItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/components/DialogItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/buttons/ButtonCrud.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/components/buttons/ButtonCrud.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/crud/CrudTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/components/crud/CrudTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/dialogModal/DialogModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/components/dialogModal/DialogModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/buttons/ButtonIconList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/components/buttons/ButtonIconList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/linkPanel/LinkPanel.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/linkPanel/services/linkService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/widgets/PercentWidget.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/widgets/WidgetPanel.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/src/css/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/css/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/css/override.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/css/override.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/i18n/en-US/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/i18n/en-US/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/GroupsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/GroupsList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/GroupsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/GroupsPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/MobileRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/components/table/MobileRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/RegForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/GroupsDetailsPane.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/GroupsDetailsPane.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/RuleInfo.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/RulesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/RolesList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/GroupDetailsPane.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/GroupsDetailsPane.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/RuleCondition.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/RuleCondition.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/groupService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/groupService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/ruleService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/roleService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/ResourcesPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/UserPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/components/ResourceDetailsPane.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/components/ResourceDetailsPane.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/router/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/stores/useRouterConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/stores/useRouterConfig.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +58,11 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupGrunt">
+      <scroll-view-position x="0" y="0" />
+    </layout>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -74,34 +78,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/manunin/IdeaProjects/score/src/main/vue/src/assets&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3862069&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;fa53b91ccc1b78668d5af58e1ed3a485&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/manunin/IdeaProjects/auth-module",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.3862069",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "fa53b91ccc1b78668d5af58e1ed3a485",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/vue/src/assets" />
@@ -153,7 +157,10 @@
       <workItem from="1705214931595" duration="66000" />
       <workItem from="1705215025213" duration="21034000" />
       <workItem from="1708206322707" duration="148000" />
-      <workItem from="1708378277412" duration="6566000" />
+      <workItem from="1708378277412" duration="7963000" />
+      <workItem from="1708494631500" duration="228000" />
+      <workItem from="1708498138482" duration="122000" />
+      <workItem from="1708499073419" duration="14182000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1703828887375</created>
@@ -162,7 +169,21 @@
       <option name="project" value="LOCAL" />
       <updated>1703828887375</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Rules page implemented">
+      <created>1708493491474</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708493491474</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Description is fixed">
+      <created>1708499270165</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1708499270165</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +202,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first" />
-    <option name="LAST_COMMIT_MESSAGE" value="first" />
+    <MESSAGE value="Rules page implemented" />
+    <MESSAGE value="Description is fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Description is fixed" />
   </component>
 </project>

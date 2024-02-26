@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <div class="relative-position">
-      <resources-list @select-resource="resource = $event"/>
+    <div class="relative-position single-page">
+<!--      <resources-list @select-resource="resource = $event"/>-->
       <resource-details-pane v-if="!isMobile" :group="group"/>
     </div>
-  </div>
 </template>
 
 <script setup>

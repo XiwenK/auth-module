@@ -1,5 +1,5 @@
 export default {
-  appName: 'Groups',
+  appName: 'Authorization and Accounting System',
   channelsList: {
     title: 'Channels',
     channelDetailsTitle: 'Channel details',
@@ -138,6 +138,28 @@ export default {
       booked: 'Booked'
     }
   },
+  roleList: {
+    title: 'Roles',
+    fields: {
+      id: 'Id',
+      name: 'Role Name',
+      desc: 'Description',
+    },
+    dialog: {
+      header: {
+        add: 'Add role',
+        modify: 'Modify role'
+      },
+      validations: {
+        nameMustPresent: 'Role name must be set',
+        nameLength: 'Role name must be at least 3 characters long',
+        nameLengthMax: 'Role name must be less than 50 characters long',
+      },
+      confirmation: {
+        delete: 'Are you sure you want to delete this role?'
+      }
+    },
+  },
   studentsList: {
     fields: {
       id: 'Id',
@@ -274,6 +296,7 @@ export default {
     ok: 'Ok',
     login: 'Login',
     logout: 'Logout',
+    backButton: 'Back',
   },
   recordsPerPage: 'Records per page',
   exceptions: {

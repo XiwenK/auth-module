@@ -1,4 +1,4 @@
-<template>
+  <template>
   <q-tabs
           indicator-color="transparent"
           :breakpoint="0"

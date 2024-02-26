@@ -5,28 +5,36 @@ export const useRouterConfig = defineStore('routerConfig', {
     usePageTransition: false,
     essentialLinks: [
       {
-        title: 'Channels',
-        caption: 'Channel list',
+        title: 'Groups',
+        caption: 'Groups list',
         icon: 'http',
-        showOnLoggedOut: false,
-        link: '/channels',
-        root: '/channels'
-      },
-      {
-        title: 'Transactions',
-        caption: 'Transactions list',
-        icon: 'receipt_long',
-        showOnLoggedOut: false,
-        link: '/transactions',
-        root: '/transactions'
-      },
-      {
-        title: 'Rules Engine',
-        caption: 'Groups List',
-        icon: 'calculate',
         showOnLoggedOut: false,
         link: '/groups',
         root: '/groups'
+      },
+      {
+        title: 'Users',
+        caption: 'Users list',
+        icon: 'receipt_long',
+        showOnLoggedOut: false,
+        link: '/users',
+        root: '/users'
+      },
+      {
+        title: 'Spaces',
+        caption: 'Spaces List',
+        icon: 'calculate',
+        showOnLoggedOut: false,
+        link: '/spaces',
+        root: '/spaces'
+      },
+      {
+        title: 'Audit',
+        caption: 'Audit',
+        icon: 'calculate',
+        showOnLoggedOut: false,
+        link: '/audit',
+        root: '/audit'
       },
       // {
       //   title: 'Analytics',

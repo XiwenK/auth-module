@@ -3,10 +3,7 @@ import endpoints from 'src/rest/endpoints';
 
 const generateRandomGroup = () => ({
   id: Math.floor(Math.random() * 10000),
-  name: `Group ${Math.floor(Math.random() * 100)}`,
-  date: new Date(),
-  placesCount: Math.floor(Math.random() * 100),
-  booked: Math.floor(Math.random() * 100),
+  name: `Group ${Math.floor(Math.random() * 100)}`
 })
 
 const loadGroups = (string, page, fetchCount, sortBy, descending) => {
@@ -18,11 +15,6 @@ const loadGroups = (string, page, fetchCount, sortBy, descending) => {
       sortField: sortBy || 'name',
       sortDirection: descending ? "DESC" : "ASC"
     }
-  }).then(res => {
-    return res.map(item => {
-      item.schedule = {value: item.schedule.id, label: item.schedule.name};
-      return item;
-    })
   })
 };
 
@@ -35,14 +27,10 @@ const loadGroupsCount = (string) => {
 }
 
 const addGroup = (group) => {
-  let schedule = group.schedule;
-  group.schedule = {id: schedule.value, name: schedule.label};
   return postData(endpoints.groups, group)
 }
 
 const modifyGroup = (group) => {
-  let schedule = group.schedule;
-  group.schedule = {id: schedule.value, name: schedule.label};
   return putData(endpoints.groups, group)
 }
 
