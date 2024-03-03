@@ -13,11 +13,13 @@ const login = ({ login, password }) => {
   });
 }
 
-const register = ({ login, email, password }) => {
+const register = ({ login, email, password, firstName, lastName }) => {
   return loadDataWithPost(endpoints.register, {
     username: login,
     email: email,
-    password: password
+    password: password,
+    firstName: firstName,
+    lastName: lastName
   });
 }
 

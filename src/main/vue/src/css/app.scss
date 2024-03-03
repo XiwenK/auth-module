@@ -66,6 +66,9 @@ $grey: hsl(50, 80%, 50%);
     &.page-desktop-left {
       width: $page-left-wigth !important;
     }
+    &.page-desktop-left.single {
+      width: calc(100% - #{$page-margin-x} * 2) !important;;
+    }
     &.page-desktop-right {
       left: $page-left-wigth + $page-margin-x !important;
       width: calc(100% - #{$page-left-wigth} - #{$page-margin-x} * 3) !important;

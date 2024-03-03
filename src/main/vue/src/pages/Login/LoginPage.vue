@@ -74,7 +74,7 @@ function onLoginClick() {
       if (success) {
         authService.login({login: login.value, password: password.value}).then((response) => {
             store.login(response);
-            router.push(`/groups`);
+            router.push(`/users`);
         }).catch((err) => {
           if (err.response?.data) {
             $q.notify({

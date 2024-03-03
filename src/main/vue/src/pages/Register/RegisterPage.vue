@@ -27,6 +27,16 @@
                   val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || $t('registerPage.validations.emailMustBeValid') ]"
             />
             <q-input
+              v-model="firstName"
+              :label="$t('userList.fields.firstName')"
+              type="text"
+              :rules="[ val => !!val || $t('userList.fields.validations.firstNameMustPresent') ]"/>
+            <q-input
+              v-model="lastName"
+              :label="$t('userList.fields.lastName')"
+              type="text"
+              :rules="[ val => !!val || $t('userList.fields.validations.lastNameMustPresent') ]"/>
+            <q-input
               v-model="password"
               :label="$t('registerPage.fields.password')"
               type="password"
@@ -73,6 +83,8 @@ const login = ref('');
 const password = ref('');
 const repeatPassword = ref('');
 const email = ref('');
+const firstName = ref('');
+const lastName = ref('');
 const isAccept = ref(false);
 const form = ref(null);
 
@@ -80,7 +92,8 @@ function onRegisterClick() {
   form.value.validate()
     .then(success => {
       if (success) {
-        authService.register({login: login.value, email: email.value, password: password.value})
+        authService.register({login: login.value, email: email.value, password: password.value,
+          firstName: firstName.value, lastName: lastName.value})
           .then(() => {
             router.push(`/login`);
             $q.notify({

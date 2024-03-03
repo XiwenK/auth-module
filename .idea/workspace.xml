@@ -4,29 +4,103 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d38cf51-7ae4-40f3-84ca-fa67222e1872" name="Changes" comment="Description is fixed">
-      <change afterPath="$PROJECT_DIR$/src/main/vue/src/components/buttons/AddMobileButton.vue" afterDir="false" />
+    <list default="true" id="2d38cf51-7ae4-40f3-84ca-fa67222e1872" name="Changes" comment="Groups and Roles list UI have been refactored">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Spaces/SpacePage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Spaces/UserList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Spaces/components/GroupsDetailsPane.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Spaces/components/RolesList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Spaces/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Spaces/services/dictionaryService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Spaces/services/roleService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Spaces/services/userService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Users/UserList.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Users/UserPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Users/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Users/services/userService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/quasar.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/quasar.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/buttons/ButtonIconList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/components/buttons/ButtonIconList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/linkPanel/LinkPanel.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/linkPanel/services/linkService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/widgets/PercentWidget.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/components/widgets/WidgetPanel.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/CalendarController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/ResourceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/ResourceTypeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/ScheduleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/ShortUrlController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/StudentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/CalendarDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/GroupDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/GroupDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/ResourceDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/ResourceTypeDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/ScheduleDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/SignupRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/SignupRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/StudentDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/exception/ResultType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/exception/ResultType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/CalendarMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/ResourceMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/ScheduleMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/StudentMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Calendar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Resource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Schedule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/CalendarRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/ResourceRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/ScheduleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/StudentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/CalendarService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/ResourceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/ResourceTypeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/ScheduleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/StudentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220415_create_user_table.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20220415_create_user_table.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230530_create_group_table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230530_create_schedule_table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230701_create_group_student_table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230701_create_student_table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230807_add_url_column_group_table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230819_remove_comment_null_restriction_student_group_table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230907_add_place_price_column_group_table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230910_create_calendar_table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/20230910_create_resource_table.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/changelog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/changelog/1.0.0/changelog.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/src/css/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/css/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/src/i18n/en-US/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/i18n/en-US/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/GroupsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/GroupsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/GroupsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/GroupsPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/RegForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Channels/ChannelPage.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Channels/components/ChannelDetailsPane.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Channels/components/ChannelsList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Channels/components/MappingList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Channels/components/MappingPane.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Channels/constants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Channels/services/channelService.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/GroupsDetailsPane.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/GroupsDetailsPane.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/RuleInfo.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/RulesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components/RolesList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/groupService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/groupService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/ruleService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Groups/services/roleService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/ResourcesPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/UserPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/components/ResourceDetailsPane.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/components/ResourceDetailsPane.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Login/LoginPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Login/LoginPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Login/service/authService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Login/service/authService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Places/PlacesList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Register/RegisterPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Register/RegisterPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/UserPage.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/components/ResourceDetailsPane.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/components/ResourcesList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/constants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Resources/services/resourceService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/StudentsList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/ArithmeticCheck.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/AttributeOperand.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/CaseSensetive.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/ConstantCheck.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/ListCheck.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/RuleCheck.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/components/RuleCondition.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/constants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Students/services/studentService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Transactions/TransactionPage.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Transactions/components/TransactionsList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Transactions/services/transactionService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/rest/endpoints.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/rest/endpoints.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/router/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/src/stores/useRouterConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/stores/useRouterConfig.js" afterDir="false" />
     </list>
@@ -39,6 +113,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Vue Single File Component" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -87,7 +162,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/manunin/IdeaProjects/auth-module",
+    "last_opened_file_path": "/Users/manunin/IdeaProjects/auth-module/src/main/vue/src/pages",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -95,7 +170,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3862069",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
     "spring.configuration.checksum": "fa53b91ccc1b78668d5af58e1ed3a485",
     "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
@@ -108,11 +183,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/vue/src/pages" />
+      <recent name="$PROJECT_DIR$/src/main/vue/src/pages/Users" />
       <recent name="$PROJECT_DIR$/src/main/vue/src/assets" />
       <recent name="$PROJECT_DIR$/src/main/vue/src/pages/Groups/components" />
       <recent name="$PROJECT_DIR$/src/main/vue/src/pages/Students/components" />
-      <recent name="$PROJECT_DIR$/src/main/vue/src/pages" />
-      <recent name="$PROJECT_DIR$/src/main/vue/src/pages/Transactions/services" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/vue/src/components/table" />
@@ -160,7 +235,8 @@
       <workItem from="1708378277412" duration="7963000" />
       <workItem from="1708494631500" duration="228000" />
       <workItem from="1708498138482" duration="122000" />
-      <workItem from="1708499073419" duration="14182000" />
+      <workItem from="1708499073419" duration="18418000" />
+      <workItem from="1709016031884" duration="33036000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1703828887375</created>
@@ -183,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708499270165</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Groups and Roles list UI have been refactored">
+      <created>1708929714712</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708929714714</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +287,23 @@
     <MESSAGE value="first" />
     <MESSAGE value="Rules page implemented" />
     <MESSAGE value="Description is fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Description is fixed" />
+    <MESSAGE value="Groups and Roles list UI have been refactored" />
+    <option name="LAST_COMMIT_MESSAGE" value="Groups and Roles list UI have been refactored" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserServiceImpl.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/mapper/UserMapper.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

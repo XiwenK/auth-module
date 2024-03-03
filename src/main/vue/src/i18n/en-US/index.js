@@ -138,6 +138,34 @@ export default {
       booked: 'Booked'
     }
   },
+  userList: {
+    title: 'Users',
+    fields: {
+      id: 'Id',
+      username: 'Username',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      password: 'Password',
+      repeatPassword: 'Repeat Password',
+      email: 'Email',
+      validations: {
+        usernameMustPresent: 'Username must be set',
+        usernameLength: 'Username must be at least 3 characters long',
+        usernameLengthMax: 'Username must be less than 20 characters long',
+        emailMustPresent: 'Email must be set',
+        emailMustBeValid: 'Email must be valid',
+        passwordMustPresent: 'Password must be set',
+        passwordMinLength: 'Password must be between 8 and 20 characters long',
+        passwordMustBeTheSame: 'Passwords must be the same',
+      }
+    },
+    dialog: {
+      header: {
+        add: 'Add user',
+        modify: 'Modify user'
+      }
+    }
+  },
   roleList: {
     title: 'Roles',
     fields: {

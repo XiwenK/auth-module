@@ -7,6 +7,8 @@ public enum ResultType {
     USERNAME_ALREADY_EXISTS(HttpStatus.BAD_REQUEST.value(), "exceptions.usernameAlreadyExists"),
     EMAIL_ALREADY_EXISTS(HttpStatus.BAD_REQUEST.value(), "exceptions.emailAlreadyExists"),
     USER_SUCCESSFULLY_CREATED(HttpStatus.OK.value(), "registerPage.successMessage"),
+
+    USER_SUCCESSFULLY_MODIFIED(HttpStatus.OK.value(), "user.successfullyModified"),
     BAD_REQUEST(HttpStatus.BAD_REQUEST.value(), "message"),
 
     GROUP_NAME_ALREADY_EXISTS(HttpStatus.BAD_REQUEST.value(), "exceptions.groupNameAlreadyExists"),

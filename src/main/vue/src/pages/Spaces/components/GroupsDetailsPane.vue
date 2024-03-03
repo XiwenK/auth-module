@@ -11,7 +11,8 @@
       </template>
     </page-header>
     <page-body>
-      <roles-list class="fit absolute" :group="group"/>
+      <roles-list class="fit absolute"
+                  :group="group"/>
     </page-body>
   </page-layout>
 </template>

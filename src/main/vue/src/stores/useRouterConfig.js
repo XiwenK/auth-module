@@ -4,14 +4,14 @@ export const useRouterConfig = defineStore('routerConfig', {
   state: () => ({
     usePageTransition: false,
     essentialLinks: [
-      {
-        title: 'Groups',
-        caption: 'Groups list',
-        icon: 'http',
-        showOnLoggedOut: false,
-        link: '/groups',
-        root: '/groups'
-      },
+      // {
+      //   title: 'Groups',
+      //   caption: 'Groups list',
+      //   icon: 'http',
+      //   showOnLoggedOut: false,
+      //   link: '/groups',
+      //   root: '/groups'
+      // },
       {
         title: 'Users',
         caption: 'Users list',
@@ -20,22 +20,14 @@ export const useRouterConfig = defineStore('routerConfig', {
         link: '/users',
         root: '/users'
       },
-      {
-        title: 'Spaces',
-        caption: 'Spaces List',
-        icon: 'calculate',
-        showOnLoggedOut: false,
-        link: '/spaces',
-        root: '/spaces'
-      },
-      {
-        title: 'Audit',
-        caption: 'Audit',
-        icon: 'calculate',
-        showOnLoggedOut: false,
-        link: '/audit',
-        root: '/audit'
-      },
+      // {
+      //   title: 'Spaces',
+      //   caption: 'Spaces List',
+      //   icon: 'calculate',
+      //   showOnLoggedOut: false,
+      //   link: '/spaces',
+      //   root: '/spaces'
+      // },
       // {
       //   title: 'Analytics',
       //   caption: 'Groups analytics',
@@ -52,14 +44,14 @@ export const useRouterConfig = defineStore('routerConfig', {
       //   link: '/resources',
       //   root: '/resources'
       // },
-      {
-        title: 'Settings',
-        caption: 'Settings',
-        icon: 'settings',
-        showOnLoggedOut: false,
-        link: '/settings',
-        root: '/settings'
-      }
+      // {
+      //   title: 'Settings',
+      //   caption: 'Settings',
+      //   icon: 'settings',
+      //   showOnLoggedOut: false,
+      //   link: '/settings',
+      //   root: '/settings'
+      // }
     ]
   }),
   getters: {

@@ -1,6 +1,15 @@
 package com.manunin.score.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,16 +19,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String username;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
 
     @Column(name = "IS_LOCKED")
     private boolean isLocked;
-
-    public User() {
-    }
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
@@ -33,15 +40,35 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "space_id"))
     private Set<Space> spaces = new HashSet<>();
 
+    public User() {
+    }
+
     public User(final String username, final String email, final String password) {
         this.username = username;
         this.email = email;
         this.password = password;
     }
 
+    public User(final String username, final String email, final String password, final String firstName,
+                final String lastName) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public User(long id, String username) {
         this.id = id;
         this.username = username;
+    }
+
+    public User(String username, String email, String firstName, String lastName, final boolean isLocked) {
+        this.username = username;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isLocked = isLocked;
     }
 
     public long getId() {
@@ -98,5 +125,21 @@ public class User {
 
     public void setSpaces(Set<Space> spaces) {
         this.spaces = spaces;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

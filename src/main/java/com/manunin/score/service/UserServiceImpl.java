@@ -26,8 +26,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
     public User addUser(final User user) {
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -36,10 +40,11 @@ public class UserServiceImpl implements UserService {
     public User modifyUser(final User user) {
         User userFromDb = userRepository.findByUsername(user.getUsername())
                 .orElseThrow(() -> new ServiceException(NOT_FOUND, "exception.not-found.service.demo-object-not-found", user.getUsername()));
-        userFromDb.setRoles(user.getRoles());
+        userFromDb.setFirstName(user.getFirstName());
+        userFromDb.setLastName(user.getLastName());
         userFromDb.setEmail(user.getEmail());
+        userFromDb.setRoles(user.getRoles());
         userFromDb.setLocked(user.isLocked());
-        userFromDb.setSpaces(user.getSpaces());
         return userRepository.save(userFromDb);
     }
 
@@ -58,13 +63,20 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void deleteUser(final Long id) {
+        userRepository.findById(id)
+                .orElseThrow(() -> new ServiceException(NOT_FOUND, "exception.not-found.service.demo-object-not-found", id));
         userRepository.deleteById(id);
     }
 
     @Override
     @Transactional
-    public List<User> findByStringWithPagination(final String inputString, final Pageable pageable) {
-        return userRepository.findAllByInputStringWithPagination(inputString, pageable).get().collect(Collectors.toList());
+    public List<User> findByFilterWithPagination(final String filter, final Pageable pageable) {
+        return userRepository.findAllByFilterWithPagination(filter, pageable).get().collect(Collectors.toList());
+    }
+
+    @Override
+    public long countByFilter(final String filter) {
+        return userRepository.countByFilter(filter);
     }
 
     @Override

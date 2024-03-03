@@ -33,10 +33,6 @@ public class Group {
 
     private Integer placePrice;
 
-    @ManyToOne
-    @JoinColumn(name = "schedule_id")
-    private Schedule schedule;
-
     @OneToMany(mappedBy = "group",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
@@ -83,14 +79,6 @@ public class Group {
 
     public void setBooked(int booked) {
         this.booked = booked;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule scheduleId) {
-        this.schedule = scheduleId;
     }
 
     public Set<GroupStudent> getStudents() {

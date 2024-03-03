@@ -28,6 +28,16 @@ public class SignupRequest {
     @Schema(description = "User password")
     private String password;
 
+    @NotBlank
+    @Size(max = 50)
+    @Schema(description = "User first name")
+    private String firstName;
+
+    @NotBlank
+    @Size(max = 50)
+    @Schema(description = "User last name")
+    private String lastName;
+
     public String getUsername() {
         return username;
     }
@@ -58,5 +68,21 @@ public class SignupRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

@@ -20,10 +20,26 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsByEmail(String email);
 
     @Query("SELECT u " +
-            "FROM User u WHERE :inputString is null or u.username like %:inputString% or u.email like %:inputString%")
-    Page<User> findAllByInputStringWithPagination(@Param("inputString") String inputString, Pageable pageable);
+            "FROM User u " +
+            "WHERE :filter is null " +
+            "   or u.username like %:filter% " +
+            "   or u.email like %:filter%" +
+            "   or u.firstName like %:filter%" +
+            "   or u.lastName like %:filter%")
+    Page<User> findAllByFilterWithPagination(@Param("filter") String filter, Pageable pageable);
+
+    @Query("SELECT count(u) " +
+            "FROM User u " +
+            "WHERE :filter is null " +
+            "   or u.username like %:filter% " +
+            "   or u.email like %:filter%" +
+            "   or u.firstName like %:filter%" +
+            "   or u.lastName like %:filter%")
+    long countByFilter(@Param("filter") String filter);
 
     @Query("SELECT u " +
-            "FROM User u WHERE :inputString is null or u.username like %:inputString% or u.email like %:inputString%")
-    List<User> findAllByInputString(@Param("inputString") String inputString);
+            "FROM User u WHERE :filter is null " +
+            "   or u.username like %:filter% " +
+            "   or u.email like %:filter%")
+    List<User> findAllByInputString(@Param("filter") String filter);
 }

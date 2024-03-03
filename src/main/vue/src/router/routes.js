@@ -29,7 +29,11 @@ const routes = [
       },
       {
         path: '/users',
-        component: () => import('pages/Resources/UserPage.vue'),
+        component: () => import('pages/Users/UserPage.vue'),
+      },
+      {
+        path: '/spaces',
+        component: () => import('pages/Spaces/SpacePage.vue'),
       },
       { path: '/login', component: () => import('pages/Login/LoginPage.vue') },
       { path: '/register', component: () => import('pages/Register/RegisterPage.vue') },

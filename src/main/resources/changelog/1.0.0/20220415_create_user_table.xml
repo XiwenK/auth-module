@@ -18,6 +18,8 @@
             (
             ID              bigserial    not null,
             USERNAME        text         not null,
+            FIRST_NAME      text         not null,
+            LAST_NAME       text         not null,
             PASSWORD        text         not null,
             EMAIL           text         not null,
             IS_LOCKED       boolean      not null default false
@@ -32,6 +34,8 @@
 
             COMMENT ON COLUMN APP_USERS.ID            IS 'User id';
             COMMENT ON COLUMN APP_USERS.USERNAME      IS 'User name (login)';
+            COMMENT ON COLUMN APP_USERS.FIRST_NAME    IS 'User first name';
+            COMMENT ON COLUMN APP_USERS.LAST_NAME     IS 'User last name';
             COMMENT ON COLUMN APP_USERS.PASSWORD      IS 'User password';
             COMMENT ON COLUMN APP_USERS.EMAIL         IS 'User email';
             COMMENT ON COLUMN APP_USERS.IS_LOCKED     IS 'Flag says if the user is locked';

@@ -31,10 +31,6 @@ public class GroupDto {
     @Schema(example = "10", description = "Group booked")
     private int booked;
 
-    @NotNull
-    @Schema(description = "Schedule")
-    private ScheduleDto schedule;
-
     @Schema(description = "Group url")
     private String url;
 
@@ -79,14 +75,6 @@ public class GroupDto {
 
     public void setBooked(int booked) {
         this.booked = booked;
-    }
-
-    public ScheduleDto getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(ScheduleDto schedule) {
-        this.schedule = schedule;
     }
 
     public String getUrl() {
