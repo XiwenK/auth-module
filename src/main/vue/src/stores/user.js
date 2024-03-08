@@ -8,7 +8,7 @@ export const useUserStore = defineStore('user', {
   }),
   actions: {
     login (data) {
-      this.setToken(data?.accessToken)
+      this.setToken(data?.token)
     },
     logout () {
       this.setToken(undefined);

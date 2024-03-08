@@ -1,57 +1,64 @@
 package com.manunin.score.configuration;
 
-import com.manunin.score.secutiry.jwt.AuthEntryPointJwt;
-import com.manunin.score.secutiry.jwt.JwtAuthenticationFilter;
+import com.manunin.score.secutiry.jwt.*;
+import com.manunin.score.secutiry.login.LoginAuthenticationFilter;
+import com.manunin.score.secutiry.matcher.SkipPathRequestMatcher;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@Order(SecurityProperties.BASIC_AUTH_ORDER)
+public class SecurityConfig{
 
-    private final UserDetailsService userDetailsService;
-
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-
+    public static final String SIGNIN_ENTRY_POINT = "/auth/signin";
+    public static final String SIGNUP_ENTRY_POINT = "/auth/signup";
+    public static final String SWAGGER_ENTRY_POINT = "/swagger-ui/**";
+    public static final String API_DOCS_ENTRY_POINT = "/api-docs/**";
     private final AuthEntryPointJwt unauthorizedHandler;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final AuthenticationManager authenticationManager;
 
-    public SecurityConfig(UserDetailsService userDetailsService, JwtAuthenticationFilter jwtAuthenticationFilter,
-                          AuthEntryPointJwt unauthorizedHandler) {
-        this.userDetailsService = userDetailsService;
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    private final AuthenticationSuccessHandler authenticationSuccessHandler;
+//    private final JwtAuthenticationProvider jwtAuthenticationProvider;
+//
+//    private final LoginAuthenticationProvider loginAuthenticationProvider;
+
+    public SecurityConfig(final AuthEntryPointJwt unauthorizedHandler,
+                          final JwtTokenProvider jwtTokenProvider,
+                          final AuthenticationManager authenticationManager,
+//    /*                      final JwtAuthenticationProvider jwtAuthenticationProvider,
+//     */                     final LoginAuthenticationProvider loginAuthenticationProvider
+                          AuthenticationSuccessHandler authenticationSuccessHandler) {
         this.unauthorizedHandler = unauthorizedHandler;
-    }
-
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.authenticationManager = authenticationManager;
+//        this.jwtAuthenticationProvider = jwtAuthenticationProvider;
+//        this.loginAuthenticationProvider = loginAuthenticationProvider;
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -66,8 +73,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+//    @Bean
+//    AuthenticationManager authenticationManager() {
+//        return super.authenticationManager();
+//    }
+
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .cors()
                 .and()
@@ -80,14 +92,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/auth/signin").permitAll()
-                    .antMatchers("/auth/signup").permitAll()
-                    .antMatchers("/auth/test").permitAll()
-                    .antMatchers("/swagger-ui/**").permitAll()
-                    .antMatchers("/api-docs/**").permitAll()
-                    .antMatchers("/shortUrls/**").permitAll()
-                .anyRequest().authenticated();
+                    .antMatchers(SIGNIN_ENTRY_POINT).permitAll()
+                    .antMatchers(SIGNUP_ENTRY_POINT).permitAll()
+                    .antMatchers(SWAGGER_ENTRY_POINT).permitAll()
+                    .antMatchers(API_DOCS_ENTRY_POINT).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .addFilterBefore(buildLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(buildTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+//                .authenticationProvider(loginAuthenticationProvider)
+//                .authenticationProvider(jwtAuthenticationProvider);
 
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+    }
+
+    protected TokenAuthenticationFilter buildTokenAuthenticationFilter() throws Exception {
+        List<String> pathsToSkip = new ArrayList<>(Arrays.asList(SIGNIN_ENTRY_POINT, SIGNUP_ENTRY_POINT, SWAGGER_ENTRY_POINT, API_DOCS_ENTRY_POINT));
+        SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip);
+        TokenAuthenticationFilter filter = new TokenAuthenticationFilter(jwtTokenProvider, matcher);
+        filter.setAuthenticationManager(this.authenticationManager);
+        return filter;
+    }
+
+    @Bean
+    protected LoginAuthenticationFilter buildLoginProcessingFilter() throws Exception {
+        LoginAuthenticationFilter filter = new LoginAuthenticationFilter(SIGNIN_ENTRY_POINT, authenticationSuccessHandler);
+        filter.setAuthenticationManager(this.authenticationManager);
+        return filter;
     }
 }

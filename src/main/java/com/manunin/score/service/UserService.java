@@ -15,4 +15,5 @@ public interface UserService {
     List<User> findByFilterWithPagination(String filter, Pageable pageable);
     long countByFilter(String filter);
     List<User> findByString(String inputString);
+    User findByUsername(String username);
 }

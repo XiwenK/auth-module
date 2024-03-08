@@ -6,7 +6,7 @@ const login = ({ login, password }) => {
     username: login,
     password: password
   }).then(response => {
-    if (response.accessToken) {
+    if (response.token) {
       localStorage.setItem('user', JSON.stringify(response));
       return response;
     }
