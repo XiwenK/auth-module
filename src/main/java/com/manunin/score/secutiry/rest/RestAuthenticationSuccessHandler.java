@@ -3,6 +3,7 @@ package com.manunin.score.secutiry.rest;
 import com.manunin.score.dto.JwtPair;
 import com.manunin.score.secutiry.jwt.JwtTokenProvider;
 import com.manunin.score.utils.JsonUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +30,7 @@ public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHa
 
         JwtPair jwtPair = tokenProvider.generateTokenPair(userDetails);
 
-        response.setStatus(HttpServletResponse.SC_OK);
+        response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         JsonUtils.writeValue(response.getWriter(), jwtPair);
     }

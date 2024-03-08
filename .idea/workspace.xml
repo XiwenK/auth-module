@@ -4,32 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d38cf51-7ae4-40f3-84ca-fa67222e1872" name="Changes" comment="User page is made">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/AuthenticationManagerConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/dto/JwtPair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/exception/AuthMethodNotSupportedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/exception/ExpiredTokenException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/JwtAuthenticationProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/JwtAuthenticationToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/TokenAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/login/LoginAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/login/LoginAuthenticationProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/matcher/SkipPathRequestMatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/rest/RestAuthenticationSuccessHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/utils/JsonUtils.java" afterDir="false" />
+    <list default="true" id="2d38cf51-7ae4-40f3-84ca-fa67222e1872" name="Changes" comment="Refactored login process">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/configuration/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/JwtAuthenticationFilter.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/JwtTokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Login/service/authService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Login/service/authService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/pages/Users/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/pages/Users/UserPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/src/stores/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/stores/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/TokenAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/TokenAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/rest/RestAuthenticationSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/rest/RestAuthenticationSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/src/rest/apiClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/src/rest/apiClient.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709484171331</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Refactored login process">
+      <created>1709887284956</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709887284956</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +214,8 @@
     <MESSAGE value="Description is fixed" />
     <MESSAGE value="Groups and Roles list UI have been refactored" />
     <MESSAGE value="User page is made" />
-    <option name="LAST_COMMIT_MESSAGE" value="User page is made" />
+    <MESSAGE value="Refactored login process" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored login process" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -243,34 +231,19 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/login/LoginAuthenticationProvider.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/controller/UserController.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/TokenAuthenticationFilter.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/rest/RestAuthenticationSuccessHandler.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/matcher/SkipPathRequestMatcher.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/login/LoginAuthenticationProvider.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/service/UserDetailsImpl.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/JwtTokenProvider.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/manunin/score/secutiry/jwt/JwtAuthenticationProvider.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

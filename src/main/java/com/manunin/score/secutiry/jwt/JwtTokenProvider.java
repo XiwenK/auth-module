@@ -111,7 +111,7 @@ public class JwtTokenProvider {
 
     public String getTokenFromRequest(HttpServletRequest request) {
         String header = request.getHeader(JWT_TOKEN_HEADER_PARAM);
-        if (org.apache.commons.lang3.StringUtils.isNotBlank(header)) {
+        if (org.apache.commons.lang3.StringUtils.isBlank(header)) {
             throw new AuthenticationServiceException("Authorization header cannot be blank!");
         }
 
