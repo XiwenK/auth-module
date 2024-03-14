@@ -2,13 +2,17 @@ package com.manunin.score.secutiry.jwt;
 
 import com.manunin.score.dto.JwtPair;
 import com.manunin.score.secutiry.exception.ExpiredTokenException;
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
@@ -16,7 +20,6 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenProvider {
@@ -36,20 +39,6 @@ public class JwtTokenProvider {
         this.userDetailsService = userDetailsService;
     }
 
-//    public String generateToken(Object user) {
-//        UserDetails userPrincipal = (UserDetails) user.getPrincipal();
-//
-//        Date now = new Date();
-//        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
-//
-//        return Jwts.builder()
-//                .setSubject(userPrincipal.getUsername())
-//                .setIssuedAt(new Date())
-//                .setExpiration(expiryDate)
-//                .signWith(SignatureAlgorithm.HS512, jwtSecret)
-//                .compact();
-//    }
-
     public JwtPair generateTokenPair(UserDetails user) {
         String token = createToken(user);
         String refreshToken = createRefreshToken(user);
@@ -58,7 +47,7 @@ public class JwtTokenProvider {
 
     private String createRefreshToken(UserDetails user) {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs * 2);
+        Date expiryDate = new Date(now.getTime() + 90_000);
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
@@ -70,7 +59,7 @@ public class JwtTokenProvider {
 
     private String createToken(UserDetails user) {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs * 2);
+        Date expiryDate = new Date(now.getTime() + 60_000);
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
@@ -118,7 +107,6 @@ public class JwtTokenProvider {
         if (header.length() < HEADER_PREFIX.length()) {
             throw new AuthenticationServiceException("Invalid authorization header size.");
         }
-
         return header.substring(HEADER_PREFIX.length());
     }
 }

@@ -1,6 +1,7 @@
 package com.manunin.score.configuration;
 
 import com.manunin.score.secutiry.jwt.JwtAuthenticationProvider;
+import com.manunin.score.secutiry.jwt.RefreshTokenAuthenticationProvider;
 import com.manunin.score.secutiry.login.LoginAuthenticationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,15 +12,19 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 
 @Configuration
 public class AuthenticationManagerConfiguration {
-//
+
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
 
     private final LoginAuthenticationProvider loginAuthenticationProvider;
 
-    public AuthenticationManagerConfiguration(JwtAuthenticationProvider jwtAuthenticationProvider,
-                                              LoginAuthenticationProvider loginAuthenticationProvider) {
+    private final RefreshTokenAuthenticationProvider refreshTokenAuthenticationProvider;
+
+    public AuthenticationManagerConfiguration(final JwtAuthenticationProvider jwtAuthenticationProvider,
+                                              final LoginAuthenticationProvider loginAuthenticationProvider,
+                                              final RefreshTokenAuthenticationProvider refreshTokenAuthenticationProvider) {
         this.jwtAuthenticationProvider = jwtAuthenticationProvider;
         this.loginAuthenticationProvider = loginAuthenticationProvider;
+        this.refreshTokenAuthenticationProvider = refreshTokenAuthenticationProvider;
     }
 
     @Bean
@@ -30,6 +35,7 @@ public class AuthenticationManagerConfiguration {
         auth.authenticationEventPublisher(eventPublisher);
         auth.authenticationProvider(loginAuthenticationProvider);
         auth.authenticationProvider(jwtAuthenticationProvider);
+        auth.authenticationProvider(refreshTokenAuthenticationProvider);
         return auth.build();
     }
 }

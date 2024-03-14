@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -33,27 +34,24 @@ public class SecurityConfig{
     public static final String SIGNUP_ENTRY_POINT = "/auth/signup";
     public static final String SWAGGER_ENTRY_POINT = "/swagger-ui/**";
     public static final String API_DOCS_ENTRY_POINT = "/api-docs/**";
+    public static final String TOKEN_REFRESH_ENTRY_POINT = "/auth/refreshToken";
     private final AuthEntryPointJwt unauthorizedHandler;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
-
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
-//    private final JwtAuthenticationProvider jwtAuthenticationProvider;
-//
-//    private final LoginAuthenticationProvider loginAuthenticationProvider;
+
+    private final AuthenticationFailureHandler failureHandler;
 
     public SecurityConfig(final AuthEntryPointJwt unauthorizedHandler,
                           final JwtTokenProvider jwtTokenProvider,
                           final AuthenticationManager authenticationManager,
-//    /*                      final JwtAuthenticationProvider jwtAuthenticationProvider,
-//     */                     final LoginAuthenticationProvider loginAuthenticationProvider
-                          AuthenticationSuccessHandler authenticationSuccessHandler) {
+                          final AuthenticationSuccessHandler authenticationSuccessHandler,
+                          final AuthenticationFailureHandler failureHandler) {
         this.unauthorizedHandler = unauthorizedHandler;
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
-//        this.jwtAuthenticationProvider = jwtAuthenticationProvider;
-//        this.loginAuthenticationProvider = loginAuthenticationProvider;
         this.authenticationSuccessHandler = authenticationSuccessHandler;
+        this.failureHandler = failureHandler;
     }
 
     @Bean
@@ -67,16 +65,10 @@ public class SecurityConfig{
         configuration.setAllowedOrigins(List.of("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
-//        configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
-//    @Bean
-//    AuthenticationManager authenticationManager() {
-//        return super.authenticationManager();
-//    }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -96,27 +88,33 @@ public class SecurityConfig{
                     .antMatchers(SIGNUP_ENTRY_POINT).permitAll()
                     .antMatchers(SWAGGER_ENTRY_POINT).permitAll()
                     .antMatchers(API_DOCS_ENTRY_POINT).permitAll()
+                    .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(buildLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-//                .authenticationProvider(loginAuthenticationProvider)
-//                .authenticationProvider(jwtAuthenticationProvider);
 
         return http.build();
     }
 
     protected TokenAuthenticationFilter buildTokenAuthenticationFilter() throws Exception {
-        List<String> pathsToSkip = new ArrayList<>(Arrays.asList(SIGNIN_ENTRY_POINT, SIGNUP_ENTRY_POINT, SWAGGER_ENTRY_POINT, API_DOCS_ENTRY_POINT));
+        List<String> pathsToSkip = new ArrayList<>(Arrays.asList(SIGNIN_ENTRY_POINT, SIGNUP_ENTRY_POINT, SWAGGER_ENTRY_POINT, API_DOCS_ENTRY_POINT, TOKEN_REFRESH_ENTRY_POINT));
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip);
-        TokenAuthenticationFilter filter = new TokenAuthenticationFilter(jwtTokenProvider, matcher);
+        TokenAuthenticationFilter filter = new TokenAuthenticationFilter(jwtTokenProvider, matcher, failureHandler);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;
     }
 
     @Bean
     protected LoginAuthenticationFilter buildLoginProcessingFilter() throws Exception {
-        LoginAuthenticationFilter filter = new LoginAuthenticationFilter(SIGNIN_ENTRY_POINT, authenticationSuccessHandler);
+        LoginAuthenticationFilter filter = new LoginAuthenticationFilter(SIGNIN_ENTRY_POINT, authenticationSuccessHandler, failureHandler);
+        filter.setAuthenticationManager(this.authenticationManager);
+        return filter;
+    }
+
+    @Bean
+    protected RefreshTokenAuthenticationFilter buildRefreshTokenProcessingFilter() throws Exception {
+        RefreshTokenAuthenticationFilter filter = new RefreshTokenAuthenticationFilter(jwtTokenProvider, TOKEN_REFRESH_ENTRY_POINT, authenticationSuccessHandler, failureHandler);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;
     }

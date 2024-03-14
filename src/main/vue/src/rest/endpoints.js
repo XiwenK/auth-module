@@ -8,6 +8,7 @@ export default {
   usersCount: '/users/count',
   login: '/auth/signin',
   register: '/auth/signup',
+  refreshToken: '/auth/refreshToken',
   students: '/students',
   studentsByUrl: '/students/addByUrl',
   studentsCount: '/students/studentsCount',

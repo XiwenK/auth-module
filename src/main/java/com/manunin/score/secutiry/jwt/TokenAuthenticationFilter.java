@@ -5,7 +5,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.servlet.FilterChain;
@@ -17,10 +17,14 @@ import java.io.IOException;
 public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
     private final JwtTokenProvider tokenProvider;
 
+    private final AuthenticationFailureHandler failureHandler;
 
-    public TokenAuthenticationFilter(JwtTokenProvider tokenProvider, RequestMatcher defaultProcessUrl) {
+    public TokenAuthenticationFilter(final JwtTokenProvider tokenProvider,
+                                     final RequestMatcher defaultProcessUrl,
+                                     final AuthenticationFailureHandler failureHandler) {
         super(defaultProcessUrl);
         this.tokenProvider = tokenProvider;
+        this.failureHandler = failureHandler;
     }
 
     @Override
@@ -37,6 +41,11 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
         context.setAuthentication(authResult);
         SecurityContextHolder.setContext(context);
         chain.doFilter(request, response);
+    }
+
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        this.failureHandler.onAuthenticationFailure(request, response, failed);
     }
 
     //    @Override

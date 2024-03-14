@@ -23,9 +23,20 @@ const register = ({ login, email, password, firstName, lastName }) => {
   });
 }
 
+const refreshToken = (refreshToken) => {
+  return loadDataWithPost(endpoints.refreshToken, {
+    refreshToken: refreshToken
+  }).then(response => {
+    if (response.refreshToken) {
+      localStorage.setItem('user', JSON.stringify(response));
+      return response;
+    }
+  });
+}
+
 const logout = () => {
   // userStore.logout();
   return Promise.resolve();
 }
 
-export default { login, logout, register };
+export default { login, logout, register, refreshToken };

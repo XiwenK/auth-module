@@ -1,14 +1,11 @@
-package com.manunin.score.secutiry.login;
+package com.manunin.score.secutiry.jwt;
 
-import com.manunin.score.dto.LoginRequest;
+import com.manunin.score.dto.RefreshTokenRequest;
 import com.manunin.score.secutiry.exception.AuthMethodNotSupportedException;
 import com.manunin.score.utils.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
@@ -21,15 +18,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+public class RefreshTokenAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+    private final JwtTokenProvider tokenProvider;
 
-    private Logger logger = LoggerFactory.getLogger(LoginAuthenticationFilter.class);
     private final AuthenticationSuccessHandler successHandler;
+
     private final AuthenticationFailureHandler failureHandler;
-    public LoginAuthenticationFilter(final String defaultFilterProcessesUrl,
-                                     final AuthenticationSuccessHandler successHandler,
-                                     final AuthenticationFailureHandler failureHandler) {
-        super(defaultFilterProcessesUrl);
+
+    public RefreshTokenAuthenticationFilter(final JwtTokenProvider tokenProvider,
+                                            final String url,
+                                            final AuthenticationSuccessHandler successHandler,
+                                            final AuthenticationFailureHandler failureHandler) {
+        super(url);
+        this.tokenProvider = tokenProvider;
         this.successHandler = successHandler;
         this.failureHandler = failureHandler;
     }
@@ -43,24 +44,25 @@ public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingF
             throw new AuthMethodNotSupportedException("Authentication method not supported");
         }
 
-        LoginRequest loginRequest;
+        RefreshTokenRequest refreshTokenRequest;
         try {
-            loginRequest = JsonUtils.fromReader(request.getReader(), LoginRequest.class);
+            refreshTokenRequest = JsonUtils.fromReader(request.getReader(), RefreshTokenRequest.class);
         } catch (Exception e) {
             throw new AuthenticationServiceException("Invalid login request payload");
         }
 
-        if (StringUtils.isBlank(loginRequest.getUsername()) || StringUtils.isEmpty(loginRequest.getPassword())) {
+        if (StringUtils.isBlank(refreshTokenRequest.getRefreshToken())) {
             throw new AuthenticationServiceException("Username or Password not provided");
         }
 
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
-        token.setDetails(authenticationDetailsSource.buildDetails(request));
-        return this.getAuthenticationManager().authenticate(token);
+        return getAuthenticationManager().authenticate(new RefreshJwtAuthenticationToken(refreshTokenRequest.getRefreshToken()));
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+    protected void successfulAuthentication(final HttpServletRequest request,
+                                            final HttpServletResponse response,
+                                            final FilterChain chain,
+                                            final Authentication authResult) throws IOException, ServletException {
         this.successHandler.onAuthenticationSuccess(request, response, authResult);
     }
 
@@ -69,3 +71,4 @@ public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingF
         this.failureHandler.onAuthenticationFailure(request, response, failed);
     }
 }
+
