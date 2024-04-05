@@ -8,9 +8,10 @@ import endpoints from "src/rest/endpoints";
 const userStore = useUserStore();
 
 function authHeader() {
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (user && user.token) {
-    return {Authorization: 'Bearer ' + user.token};
+  // const user = JSON.parse(localStorage.getItem('user'));
+  let token = userStore.getToken;
+  if (token) {
+    return {Authorization: 'Bearer ' + token};
   } else {
     return {};
   }
@@ -53,5 +54,17 @@ apiClient.interceptors.response.use(function (response) {
   }
   return Promise.reject(error);
 });
+
+//interceptor of redirect response
+apiClient.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response.status === 401) {
+      clearAuthCache();
+      window.location.href = '/login?expired=true';
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default apiClient;

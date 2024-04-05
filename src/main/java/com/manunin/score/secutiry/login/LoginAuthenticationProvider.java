@@ -24,13 +24,13 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
     private final PasswordEncoder encoder;
 
     @Autowired
-    public LoginAuthenticationProvider(UserService userService) {
+    public LoginAuthenticationProvider(final UserService userService) {
         this.userService = userService;
         this.encoder = new BCryptPasswordEncoder();
     }
 
     @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+    public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
         Assert.notNull(authentication, "No authentication data provided");
         String username = (String) authentication.getPrincipal();
         String password = authentication.getCredentials().toString();
@@ -40,7 +40,9 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
         return new UsernamePasswordAuthenticationToken(securityUser, null, securityUser.getAuthorities());
     }
 
-    private UserDetails authenticateByUsernameAndPassword(Authentication authentication, String username, String password) {
+    private UserDetails authenticateByUsernameAndPassword(final Authentication authentication,
+                                                          final String username,
+                                                          final String password) {
         if (!userService.existsByUsername(username)) {
             throw new UsernameNotFoundException("User not found: " + username);
         }
@@ -55,7 +57,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
     }
 
     @Override
-    public boolean supports(Class<?> authentication) {
+    public boolean supports(final Class<?> authentication) {
         return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
     }
 }

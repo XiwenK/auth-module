@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class SkipPathRequestMatcher implements RequestMatcher {
     private final OrRequestMatcher matchers;
 
-    public SkipPathRequestMatcher(List<String> pathsToSkip) {
+    public SkipPathRequestMatcher(final List<String> pathsToSkip) {
         Assert.notNull(pathsToSkip, "List of paths to skip is required.");
         List<RequestMatcher> m = pathsToSkip.stream().map(AntPathRequestMatcher::new).collect(Collectors.toList());
         matchers = new OrRequestMatcher(m);

@@ -10,22 +10,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
+
+@Component(value = "restAuthenticationSuccessHandler")
 public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private final JwtTokenProvider tokenProvider;
 
-    public RestAuthenticationSuccessHandler(JwtTokenProvider tokenProvider) {
+    public RestAuthenticationSuccessHandler(final JwtTokenProvider tokenProvider) {
         this.tokenProvider = tokenProvider;
     }
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(final HttpServletRequest request,
+                                        final HttpServletResponse response,
+                                        final Authentication authentication) throws IOException {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         JwtPair jwtPair = tokenProvider.generateTokenPair(userDetails);

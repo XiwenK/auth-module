@@ -25,6 +25,7 @@
                 :rules="[ val => !!val || $t('loginPage.validations.passwordMustPresent')]"
               />
               <q-btn class="q-mt-lg full-width" @click="onLoginClick()" color="primary" label="Login"/>
+              <q-btn class="q-mt-lg full-width" @click="loginWithGoogle()" color="primary" label="Login with Google"/>
               <div class="row justify-center q-mt-md items-center">
                 <div class="text-caption">{{ t('loginPage.registration.message') }}</div>
                 <q-btn flat dense color="primary" :label="$t('loginPage.registration.button')"  @click="onRegisterClick()"/>
@@ -68,11 +69,17 @@ const rules = [
 
 const form = ref(null);
 
-function onLoginClick() {
+function loginWithGoogle() {
+  window.location.href = `http://localhost:9090/api/v1/oauth2/authorization/google`;
+}
+
+function onLoginClick(isGoogle = false) {
   form.value.validate()
     .then(success => {
       if (success) {
-        authService.login({login: login.value, password: password.value}).then((response) => {
+        const request = isGoogle ? authService.loginWithGoogle() : authService.login({login: login.value, password: password.value})
+        request
+          .then((response) => {
             store.login(response);
             router.push(`/users`);
         }).catch((err) => {
@@ -109,6 +116,11 @@ onMounted(() => {
       position: 'top',
       timeout: 2000
     })
+  }
+  // check if query already contains accessToken and refreshToken, then save it to store and redirect to users page
+  if (route.query?.accessToken && route.query?.refreshToken) {
+    store.login({token: route.query.accessToken, refreshToken: route.query.refreshToken});
+    router.push(`/users`);
   }
 })
 </script>

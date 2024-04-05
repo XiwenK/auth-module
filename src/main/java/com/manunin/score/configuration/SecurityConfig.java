@@ -1,8 +1,12 @@
 package com.manunin.score.configuration;
 
-import com.manunin.score.secutiry.jwt.*;
+import com.manunin.score.secutiry.jwt.AuthEntryPointJwt;
+import com.manunin.score.secutiry.jwt.JwtTokenProvider;
+import com.manunin.score.secutiry.jwt.RefreshTokenAuthenticationFilter;
+import com.manunin.score.secutiry.jwt.TokenAuthenticationFilter;
 import com.manunin.score.secutiry.login.LoginAuthenticationFilter;
 import com.manunin.score.secutiry.matcher.SkipPathRequestMatcher;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +17,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
+import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
+import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -40,17 +47,21 @@ public class SecurityConfig{
     private final AuthenticationManager authenticationManager;
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
+    private final AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler;
+
     private final AuthenticationFailureHandler failureHandler;
 
     public SecurityConfig(final AuthEntryPointJwt unauthorizedHandler,
                           final JwtTokenProvider jwtTokenProvider,
                           final AuthenticationManager authenticationManager,
-                          final AuthenticationSuccessHandler authenticationSuccessHandler,
+                          @Qualifier("restAuthenticationSuccessHandler") final AuthenticationSuccessHandler authenticationSuccessHandler,
+                          @Qualifier("oauth2AuthenticationSuccessHandler") final AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler,
                           final AuthenticationFailureHandler failureHandler) {
         this.unauthorizedHandler = unauthorizedHandler;
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
         this.authenticationSuccessHandler = authenticationSuccessHandler;
+        this.oauth2AuthenticationSuccessHandler = oauth2AuthenticationSuccessHandler;
         this.failureHandler = failureHandler;
     }
 
@@ -71,7 +82,7 @@ public class SecurityConfig{
     }
 
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
         http
                 .cors()
                 .and()
@@ -89,16 +100,31 @@ public class SecurityConfig{
                     .antMatchers(SWAGGER_ENTRY_POINT).permitAll()
                     .antMatchers(API_DOCS_ENTRY_POINT).permitAll()
                     .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()
+                    .antMatchers("/login/oauth2/code/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(buildLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.oauth2Login()
+                .authorizationEndpoint()
+                .authorizationRequestRepository(authorizationRequestRepository())
+//                .authorizationRequestResolver(authorizationRequestResolver)
+                .and()
+                .loginPage("/oauth2Login")
+                .loginProcessingUrl("/login/oauth2/code/google")
+                .failureHandler(failureHandler)
+                .successHandler(oauth2AuthenticationSuccessHandler);
 
         return http.build();
     }
 
-    protected TokenAuthenticationFilter buildTokenAuthenticationFilter() throws Exception {
-        List<String> pathsToSkip = new ArrayList<>(Arrays.asList(SIGNIN_ENTRY_POINT, SIGNUP_ENTRY_POINT, SWAGGER_ENTRY_POINT, API_DOCS_ENTRY_POINT, TOKEN_REFRESH_ENTRY_POINT));
+    @Bean
+    public AuthorizationRequestRepository<OAuth2AuthorizationRequest> authorizationRequestRepository() {
+        return new HttpSessionOAuth2AuthorizationRequestRepository();
+    }
+
+    protected TokenAuthenticationFilter buildTokenAuthenticationFilter() {
+        List<String> pathsToSkip = new ArrayList<>(Arrays.asList(SIGNIN_ENTRY_POINT, SIGNUP_ENTRY_POINT, SWAGGER_ENTRY_POINT, API_DOCS_ENTRY_POINT, TOKEN_REFRESH_ENTRY_POINT, "/login/oauth2/code/*"));
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip);
         TokenAuthenticationFilter filter = new TokenAuthenticationFilter(jwtTokenProvider, matcher, failureHandler);
         filter.setAuthenticationManager(this.authenticationManager);
@@ -106,14 +132,14 @@ public class SecurityConfig{
     }
 
     @Bean
-    protected LoginAuthenticationFilter buildLoginProcessingFilter() throws Exception {
+    protected LoginAuthenticationFilter buildLoginProcessingFilter() {
         LoginAuthenticationFilter filter = new LoginAuthenticationFilter(SIGNIN_ENTRY_POINT, authenticationSuccessHandler, failureHandler);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;
     }
 
     @Bean
-    protected RefreshTokenAuthenticationFilter buildRefreshTokenProcessingFilter() throws Exception {
+    protected RefreshTokenAuthenticationFilter buildRefreshTokenProcessingFilter() {
         RefreshTokenAuthenticationFilter filter = new RefreshTokenAuthenticationFilter(jwtTokenProvider, TOKEN_REFRESH_ENTRY_POINT, authenticationSuccessHandler, failureHandler);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;

@@ -13,6 +13,15 @@ const login = ({ login, password }) => {
   });
 }
 
+const loginWithGoogle = () => {
+  return loadDataWithPost(endpoints.loginWithGoogle).then(response => {
+    if (response.token) {
+      localStorage.setItem('user', JSON.stringify(response));
+      return response;
+    }
+  });
+}
+
 const register = ({ login, email, password, firstName, lastName }) => {
   return loadDataWithPost(endpoints.register, {
     username: login,
@@ -39,4 +48,4 @@ const logout = () => {
   return Promise.resolve();
 }
 
-export default { login, logout, register, refreshToken };
+export default { login, logout, register, refreshToken, loginWithGoogle };

@@ -35,7 +35,7 @@ public class JwtTokenProvider {
     @Value("${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
-    public JwtTokenProvider(UserDetailsService userDetailsService) {
+    public JwtTokenProvider(final UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -47,7 +47,7 @@ public class JwtTokenProvider {
 
     private String createRefreshToken(UserDetails user) {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + 90_000);
+        Date expiryDate = new Date(now.getTime() + 900_000);
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
@@ -59,7 +59,7 @@ public class JwtTokenProvider {
 
     private String createToken(UserDetails user) {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + 60_000);
+        Date expiryDate = new Date(now.getTime() + 600_000);
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
