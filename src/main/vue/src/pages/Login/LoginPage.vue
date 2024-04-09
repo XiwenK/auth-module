@@ -4,7 +4,10 @@
         {{$t('appName')}}
       </template>
       <template #form>
-        <q-card class="column" style="width: 360px" square v-model="showLoginForm">
+        <q-card class="column"
+                style="width: 360px"
+                square
+                v-model="showLoginForm">
           <q-card-section class="row items-center self-center">
             <div class="text-h6">{{ t('loginPage.fields.formTitle') }}</div>
           </q-card-section>
@@ -122,5 +125,7 @@ onMounted(() => {
     store.login({token: route.query.accessToken, refreshToken: route.query.refreshToken});
     router.push(`/users`);
   }
+  // check request body, if contains accessToken and refreshToken, then save it to store and redirect to users page
+
 })
 </script>

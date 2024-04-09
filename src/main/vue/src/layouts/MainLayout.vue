@@ -1,13 +1,10 @@
 <template>
   <q-layout view="lHh lpR fFf" style="height: 100vh" class="main-layout">
-    <q-header
-      class="header"
-      v-if="!isMobile"
-    >
+    <q-header class="header">
       <q-toolbar class="q-px-md">
         <div class="main-layout__manu-button">
           <q-btn
-            v-if="$route.path !== '/login' && !isMobile"
+            v-if="$route.path !== '/login'"
             flat
             dense
             round
@@ -17,9 +14,8 @@
           />
         </div>
         <q-toolbar-title v-if="loggedIn">
-          {{$t('appName')}}
+          {{ $t('appName') }}
         </q-toolbar-title>
-
         <q-btn v-if="loggedIn"
                flat
                :label="$t('buttons.logout')"
@@ -39,8 +35,7 @@
       width="200"
     >
       <q-list>
-        <div v-for="link in essentialLinks"
-             :key="link.title">
+        <div v-for="link in essentialLinks" :key="link.title">
           <essential-link
             v-if="link.showOnLoggedOut || loggedIn"
             @click="selected=link.title; $router.push(link.link)"
@@ -49,26 +44,6 @@
         </div>
       </q-list>
     </q-drawer>
-    <q-footer
-      v-if="isMobile && $route.path !== '/login'"
-      bordered
-      class="bg-white text-primary"
-    >
-      <q-tabs
-        no-caps
-        active-color="primary"
-        indicator-color="transparent"
-        class="text-grey"
-      >
-        <q-route-tab
-          v-for="link in essentialLinks"
-          :key="link.title"
-          :to="link.link"
-          :label="link.title"
-          :icon="link.icon"
-        />
-      </q-tabs>
-    </q-footer>
     <q-page-container>
       <router-view v-slot="{ Component }">
         <keep-alive>
@@ -81,75 +56,43 @@
   </q-layout>
 </template>
 
-<script>
-import {defineComponent, ref, computed} from 'vue'
+<script setup>
+import {ref, computed} from 'vue'
 import EssentialLink from '../components/EssentialLink.vue';
 import {useI18n} from 'vue-i18n';
 import {useUserStore} from "stores/user";
 import authService from "pages/Login/service/authService";
-import {useRouter, useRoute} from "vue-router";
+import {useRouter} from "vue-router";
 import {useRouterConfig} from "stores/useRouterConfig";
 import {useQuasar} from "quasar";
 
-export default defineComponent({
-  name: 'MainLayout',
+const store = useUserStore();
+const {t} = useI18n();
+const leftDrawerOpen = ref(false);
+const router = useRouter();
 
-  components: {
-    EssentialLink
-  },
+const loggedIn = computed(() => store.getToken);
+const routerConfig = useRouterConfig();
+const essentialLinks = computed(() => routerConfig.essentialLinks);
+const miniState = ref(false);
+const selected = ref('Groups');
 
-  setup() {
+const $q = useQuasar();
 
-    const store = useUserStore();
-    const {t} = useI18n();
-    const leftDrawerOpen = ref(false);
-    const router = useRouter();
-    const route = useRoute();
+const logout = () => {
+  authService.logout().then(() => {
+    store.logout();
+    router.push('/login');
+  })
+}
 
-
-    const loggedIn = computed(() => store.getToken);
-    const routerConfig = useRouterConfig();
-    const essentialLinks = computed(() => routerConfig.essentialLinks);
-    const miniState = ref(false);
-    const selected = ref('Groups');
-
-    const $q = useQuasar();
-    const isMobile = computed(() => $q.screen.lt.sm);
-
-    //todo how to be with browser refresh? user state is lost
-    const logout = () => {
-      authService.logout().then(() => {
-        store.logout();
-        router.push('/login');
-      })
-    }
-
-    const goTo = (link) => {
-      router.push(link);
-    }
-
-    return {
-      store,
-      loggedIn,
-      logout,
-      goTo,
-      route,
-      essentialLinks,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        if ($q.screen.gt.sm) {
-          miniState.value = !miniState.value;
-        } else {
-          leftDrawerOpen.value = !leftDrawerOpen.value
-        }
-      },
-      t,
-      miniState,
-      isMobile,
-      selected
-    }
+const toggleLeftDrawer = () => {
+  if ($q.screen.gt.sm) {
+    miniState.value = !miniState.value;
+  } else {
+    leftDrawerOpen.value = !leftDrawerOpen.value
   }
-})
+}
 </script>
 <style scoped lang="scss">
 .header {

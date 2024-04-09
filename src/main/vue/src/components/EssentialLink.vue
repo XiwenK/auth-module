@@ -11,7 +11,6 @@
     </q-item-section>
 
     <q-item-section>
-<!--todo add title bottom in mini state-->
       <q-item-label>{{ title }}</q-item-label>
     </q-item-section>
   </q-item>

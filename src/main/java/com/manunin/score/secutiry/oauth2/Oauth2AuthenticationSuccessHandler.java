@@ -4,6 +4,9 @@ import com.manunin.score.dto.JwtPair;
 import com.manunin.score.model.User;
 import com.manunin.score.secutiry.jwt.JwtTokenProvider;
 import com.manunin.score.service.UserDetailsImpl;
+import com.manunin.score.utils.JsonUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
@@ -39,10 +42,13 @@ public class Oauth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
         JwtPair jwtPair = tokenProvider.generateTokenPair(UserDetailsImpl.build(new User("manunin", "manunin", "manunin")));
 
+        //set jwtPair to cookie and send redirect to frontend
+        getRedirectStrategy().sendRedirect(request, response, getRedirectUrl("http://localhost:9000/login", jwtPair));
+
 //        response.setStatus(HttpStatus.OK.value());
 //        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 //        JsonUtils.writeValue(response.getWriter(), jwtPair);
-        getRedirectStrategy().sendRedirect(request, response, getRedirectUrl("http://localhost:9000/login", jwtPair));
+//        getRedirectStrategy().sendRedirect(request, response, getRedirectUrl("http://localhost:9000/login", jwtPair));
     }
 
     String getRedirectUrl(final String baseUrl, final JwtPair tokenPair) {

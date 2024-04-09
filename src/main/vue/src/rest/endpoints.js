@@ -1,20 +1,6 @@
 export default {
-  groups: '/groups',
-  groupsCount: '/groups/groupsCount',
-  schedules: '/schedules',
-  resourceTypes: '/resource-types',
-  calendars: '/calendars',
-  users: '/users',
-  usersCount: '/users/count',
   login: '/auth/signin',
   loginWithGoogle: '/oauth2/authorization/google',
   register: '/auth/signup',
-  refreshToken: '/auth/refreshToken',
-  students: '/students',
-  studentsByUrl: '/students/addByUrl',
-  studentsCount: '/students/studentsCount',
-  shortUrlsGetGroupId: '/shortUrls/getGroupId',
-  shortUrlsGetGroupUrl: '/shortUrls/getGroupUrl',
-  resources: '/resources',
-  resourcesCount: '/resources/resourcesCount',
+  refreshToken: '/auth/refreshToken'
 }

@@ -14,10 +14,9 @@ import { useUserStore } from 'stores/user';
 
 const LOGIN_PATH = '/login';
 const REGISTER_PATH = '/register';
-const HOME_PATH = '/groups';
-const REG_PATH = '/reg';
+const HOME_PATH = '/users';
 
-const WHITE_PATH_LIST = [LOGIN_PATH, REGISTER_PATH, REG_PATH];
+const WHITE_PATH_LIST = [LOGIN_PATH, REGISTER_PATH];
 
 
 export default route(function (/* { store, ssrContext } */) {
@@ -53,7 +52,6 @@ export default route(function (/* { store, ssrContext } */) {
       WHITE_PATH_LIST.forEach((path) => {
         if (to.path.startsWith(path)) {
           next();
-          return;
         }
       })
       next(LOGIN_PATH);
