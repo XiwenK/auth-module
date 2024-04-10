@@ -34,12 +34,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(	name = "users_spaces",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "space_id"))
-    private Set<Space> spaces = new HashSet<>();
-
     public User() {
     }
 
@@ -117,14 +111,6 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public Set<Space> getSpaces() {
-        return spaces;
-    }
-
-    public void setSpaces(Set<Space> spaces) {
-        this.spaces = spaces;
     }
 
     public String getFirstName() {

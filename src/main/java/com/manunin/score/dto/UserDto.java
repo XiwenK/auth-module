@@ -36,9 +36,6 @@ public class UserDto {
     @Schema(description = "User roles")
     private Set<RoleDto> roles;
 
-    @Schema(description = "User spaces")
-    private Set<SpaceDto> spaces;
-
     @Schema(description = "User roles")
     private boolean isLocked;
 
@@ -46,7 +43,7 @@ public class UserDto {
     }
 
     public UserDto(Long id, String username, String email, String password, String firstName, String lastName,
-                   Set<RoleDto> roles, Set<SpaceDto> spaces, boolean isLocked) {
+                   Set<RoleDto> roles, boolean isLocked) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -54,7 +51,6 @@ public class UserDto {
         this.firstName = firstName;
         this.lastName = lastName;
         this.roles = roles;
-        this.spaces = spaces;
         this.isLocked = isLocked;
     }
 
@@ -81,10 +77,6 @@ public class UserDto {
 
     public Set<RoleDto> getRoles() {
         return roles;
-    }
-
-    public Set<SpaceDto> getSpaces() {
-        return spaces;
     }
 
     public boolean getIsLocked() {
@@ -125,9 +117,5 @@ public class UserDto {
 
     public void setRoles(Set<RoleDto> roles) {
         this.roles = roles;
-    }
-
-    public void setSpaces(Set<SpaceDto> spaces) {
-        this.spaces = spaces;
     }
 }
