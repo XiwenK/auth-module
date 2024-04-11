@@ -25,6 +25,7 @@ import javax.validation.Valid;
 @RequestMapping("/auth")
 public class AuthController {
 
+
     private final UserService userService;
 
     private final RoleRepository roleRepository;
