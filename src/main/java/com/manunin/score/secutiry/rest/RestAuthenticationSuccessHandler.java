@@ -1,6 +1,6 @@
 package com.manunin.score.secutiry.rest;
 
-import com.manunin.score.dto.JwtPair;
+import com.manunin.score.secutiry.jwt.JwtPair;
 import com.manunin.score.secutiry.jwt.JwtTokenProvider;
 import com.manunin.score.utils.JsonUtils;
 import org.springframework.http.HttpStatus;

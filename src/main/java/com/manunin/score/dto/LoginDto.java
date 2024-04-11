@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.constraints.NotBlank;
 
-public class LoginRequest {
+public class LoginDto {
 
     @NotBlank
     @Schema(example = "username", description = "User name")

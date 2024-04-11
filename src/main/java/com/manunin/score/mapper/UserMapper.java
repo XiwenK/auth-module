@@ -1,6 +1,6 @@
 package com.manunin.score.mapper;
 
-import com.manunin.score.dto.SignupRequest;
+import com.manunin.score.dto.SignupDto;
 import com.manunin.score.model.ERole;
 import com.manunin.score.model.Role;
 import com.manunin.score.model.User;
@@ -20,12 +20,12 @@ public class UserMapper {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User fromDto(SignupRequest signUpRequest, final RoleRepository roleRepository) {
-        User user = new User(signUpRequest.getUsername(),
-                signUpRequest.getEmail(),
-                passwordEncoder.encode(signUpRequest.getPassword()),
-                signUpRequest.getFirstName(),
-                signUpRequest.getLastName());
+    public User fromDto(SignupDto signUpDto, final RoleRepository roleRepository) {
+        User user = new User(signUpDto.getUsername(),
+                signUpDto.getEmail(),
+                passwordEncoder.encode(signUpDto.getPassword()),
+                signUpDto.getFirstName(),
+                signUpDto.getLastName());
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByName(ERole.USER.getName())
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));

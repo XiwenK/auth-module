@@ -35,7 +35,7 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 @Order(SecurityProperties.BASIC_AUTH_ORDER)
-public class SecurityConfig{
+public class SecurityConfiguration {
 
     public static final String SIGNIN_ENTRY_POINT = "/auth/signin";
     public static final String SIGNUP_ENTRY_POINT = "/auth/signup";
@@ -51,12 +51,12 @@ public class SecurityConfig{
 
     private final AuthenticationFailureHandler failureHandler;
 
-    public SecurityConfig(final AuthEntryPointJwt unauthorizedHandler,
-                          final JwtTokenProvider jwtTokenProvider,
-                          final AuthenticationManager authenticationManager,
-                          @Qualifier("restAuthenticationSuccessHandler") final AuthenticationSuccessHandler authenticationSuccessHandler,
-                          @Qualifier("oauth2AuthenticationSuccessHandler") final AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler,
-                          final AuthenticationFailureHandler failureHandler) {
+    public SecurityConfiguration(final AuthEntryPointJwt unauthorizedHandler,
+                                 final JwtTokenProvider jwtTokenProvider,
+                                 final AuthenticationManager authenticationManager,
+                                 @Qualifier("restAuthenticationSuccessHandler") final AuthenticationSuccessHandler authenticationSuccessHandler,
+                                 @Qualifier("oauth2AuthenticationSuccessHandler") final AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler,
+                                 final AuthenticationFailureHandler failureHandler) {
         this.unauthorizedHandler = unauthorizedHandler;
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;

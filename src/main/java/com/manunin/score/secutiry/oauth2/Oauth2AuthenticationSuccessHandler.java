@@ -1,12 +1,9 @@
 package com.manunin.score.secutiry.oauth2;
 
-import com.manunin.score.dto.JwtPair;
+import com.manunin.score.secutiry.jwt.JwtPair;
 import com.manunin.score.model.User;
 import com.manunin.score.secutiry.jwt.JwtTokenProvider;
 import com.manunin.score.service.UserDetailsImpl;
-import com.manunin.score.utils.JsonUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;

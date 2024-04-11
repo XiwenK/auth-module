@@ -1,7 +1,6 @@
 package com.manunin.score.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.manunin.score.dto.JwtPair;
 
 import java.io.IOException;
 import java.io.PrintWriter;

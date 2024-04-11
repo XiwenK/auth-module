@@ -1,6 +1,6 @@
 package com.manunin.score.secutiry.jwt;
 
-import com.manunin.score.dto.RefreshTokenRequest;
+import com.manunin.score.dto.RefreshTokenDto;
 import com.manunin.score.secutiry.exception.AuthMethodNotSupportedException;
 import com.manunin.score.utils.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -44,18 +44,18 @@ public class RefreshTokenAuthenticationFilter extends AbstractAuthenticationProc
             throw new AuthMethodNotSupportedException("Authentication method not supported");
         }
 
-        RefreshTokenRequest refreshTokenRequest;
+        RefreshTokenDto refreshTokenDto;
         try {
-            refreshTokenRequest = JsonUtils.fromReader(request.getReader(), RefreshTokenRequest.class);
+            refreshTokenDto = JsonUtils.fromReader(request.getReader(), RefreshTokenDto.class);
         } catch (Exception e) {
             throw new AuthenticationServiceException("Invalid login request payload");
         }
 
-        if (StringUtils.isBlank(refreshTokenRequest.getRefreshToken())) {
+        if (StringUtils.isBlank(refreshTokenDto.getRefreshToken())) {
             throw new AuthenticationServiceException("Username or Password not provided");
         }
 
-        return getAuthenticationManager().authenticate(new RefreshJwtAuthenticationToken(refreshTokenRequest.getRefreshToken()));
+        return getAuthenticationManager().authenticate(new RefreshJwtAuthenticationToken(refreshTokenDto.getRefreshToken()));
     }
 
     @Override

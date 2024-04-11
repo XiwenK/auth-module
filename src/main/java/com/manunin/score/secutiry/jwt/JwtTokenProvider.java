@@ -1,6 +1,5 @@
 package com.manunin.score.secutiry.jwt;
 
-import com.manunin.score.dto.JwtPair;
 import com.manunin.score.secutiry.exception.ExpiredTokenException;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;

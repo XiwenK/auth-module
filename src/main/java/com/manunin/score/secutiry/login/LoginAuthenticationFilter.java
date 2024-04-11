@@ -1,6 +1,6 @@
 package com.manunin.score.secutiry.login;
 
-import com.manunin.score.dto.LoginRequest;
+import com.manunin.score.dto.LoginDto;
 import com.manunin.score.secutiry.exception.AuthMethodNotSupportedException;
 import com.manunin.score.utils.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -44,18 +44,18 @@ public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingF
             throw new AuthMethodNotSupportedException("Authentication method not supported");
         }
 
-        LoginRequest loginRequest;
+        LoginDto loginDto;
         try {
-            loginRequest = JsonUtils.fromReader(request.getReader(), LoginRequest.class);
+            loginDto = JsonUtils.fromReader(request.getReader(), LoginDto.class);
         } catch (Exception e) {
             throw new AuthenticationServiceException("Invalid login request payload");
         }
 
-        if (StringUtils.isBlank(loginRequest.getUsername()) || StringUtils.isEmpty(loginRequest.getPassword())) {
+        if (StringUtils.isBlank(loginDto.getUsername()) || StringUtils.isEmpty(loginDto.getPassword())) {
             throw new AuthenticationServiceException("Username or Password not provided");
         }
 
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
         token.setDetails(authenticationDetailsSource.buildDetails(request));
         return this.getAuthenticationManager().authenticate(token);
     }
