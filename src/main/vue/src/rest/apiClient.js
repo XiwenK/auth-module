@@ -50,21 +50,20 @@ apiClient.interceptors.response.use(function (response) {
   }
   if (error.response.status === 401) {
     clearAuthCache();
-    window.location.href = '/login?expired=true';
   }
   return Promise.reject(error);
 });
 
 //interceptor of redirect response
-apiClient.interceptors.response.use(
-  response => response,
-  error => {
-    if (error.response.status === 401) {
-      clearAuthCache();
-      window.location.href = '/login?expired=true';
-    }
-    return Promise.reject(error);
-  }
-);
+// apiClient.interceptors.response.use(
+//   response => response,
+//   error => {
+//     if (error.response.status === 401) {
+//       clearAuthCache();
+//       window.location.href = '/login?expired=true';
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 export default apiClient;

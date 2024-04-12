@@ -108,7 +108,6 @@ public class SecurityConfiguration {
         http.oauth2Login()
                 .authorizationEndpoint()
                 .authorizationRequestRepository(authorizationRequestRepository())
-//                .authorizationRequestResolver(authorizationRequestResolver)
                 .and()
                 .loginPage("/oauth2Login")
                 .loginProcessingUrl("/login/oauth2/code/google")

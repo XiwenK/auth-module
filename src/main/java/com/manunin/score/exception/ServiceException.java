@@ -1,28 +1,23 @@
 package com.manunin.score.exception;
 
-public class ServiceException extends RuntimeException {
-    private final ResultType type;
-    private final String message;
-    private final Object[] params;
+public class ServiceException extends Exception {
+    private ErrorCode errorCode;
 
-    public ServiceException(final ResultType type, final String message, final Object... params) {
+    public ServiceException () {
+        super();
+    }
+
+    public ServiceException(ErrorCode errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public ServiceException(ErrorCode errorCode, String message) {
         super(message);
-        this.type = type;
-        this.message = message;
-        this.params = params;
+        this.errorCode = errorCode;
     }
 
-    public ResultType getType() {
-        return type;
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    public Object[] getParams() {
-        return params;
+    public ErrorCode getErrorCode() {
+        return errorCode;
     }
 }
 

@@ -327,11 +327,13 @@ export default {
     backButton: 'Back',
   },
   recordsPerPage: 'Records per page',
-  exceptions: {
+  exception: {
     tooManyLoginAttempts: 'Too many login attempts. Try again in 1 minute',
     invalidCredentials: 'Invalid username or password',
-    emailAlreadyExists: 'Email already exists',
-    usernameAlreadyExists: 'Username already exists',
+    emailExists: 'Email already exists',
+    usernameExists: 'Username already exists',
+    authenticationFailed: 'Authentication failed',
+    badCredentials: 'Authentication Failed. Username or Password not valid.'
   },
   footerInfo: {
     powered: 'Powered by Groups',

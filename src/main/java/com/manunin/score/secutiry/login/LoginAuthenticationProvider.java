@@ -1,10 +1,12 @@
 package com.manunin.score.secutiry.login;
 
+import com.manunin.score.exception.ServiceException;
 import com.manunin.score.model.User;
 import com.manunin.score.service.UserDetailsImpl;
 import com.manunin.score.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -35,22 +37,22 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
         String username = (String) authentication.getPrincipal();
         String password = authentication.getCredentials().toString();
 
-        UserDetails securityUser = authenticateByUsernameAndPassword(authentication, username, password);
+        UserDetails securityUser = authenticateByUsernameAndPassword(username, password);
 
         return new UsernamePasswordAuthenticationToken(securityUser, null, securityUser.getAuthorities());
     }
 
-    private UserDetails authenticateByUsernameAndPassword(final Authentication authentication,
-                                                          final String username,
+    private UserDetails authenticateByUsernameAndPassword(final String username,
                                                           final String password) {
-        if (!userService.existsByUsername(username)) {
+        User user;
+        try {
+            user = userService.findByUsername(username);
+        } catch (ServiceException e) {
             throw new UsernameNotFoundException("User not found: " + username);
         }
 
-        User user = userService.findByUsername(username);
-
         if (!encoder.matches(password, user.getPassword())) {
-            throw new InsufficientAuthenticationException("Invalid password");
+            throw new BadCredentialsException("exception.badCredentials");
         }
 
         return UserDetailsImpl.build(user);

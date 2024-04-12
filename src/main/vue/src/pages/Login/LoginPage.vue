@@ -86,9 +86,9 @@ function onLoginClick(isGoogle = false) {
             store.login(response);
             router.push(`/users`);
         }).catch((err) => {
-          if (err.response?.data) {
+          if (err.response?.data?.message) {
             $q.notify({
-              message: t(err.response.data),
+              message: t(err.response.data.message),
               color: 'negative',
               position: 'top',
               timeout: 2000

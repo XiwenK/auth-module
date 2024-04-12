@@ -4,6 +4,7 @@ import com.manunin.score.dto.MessageResponse;
 import com.manunin.score.dto.SignupDto;
 import com.manunin.score.dto.UserDto;
 import com.manunin.score.exception.ResultType;
+import com.manunin.score.exception.ServiceException;
 import com.manunin.score.mapper.UserMapper;
 import com.manunin.score.model.User;
 import com.manunin.score.repository.RoleRepository;
@@ -28,8 +29,8 @@ public class AuthController {
     private final UserService userService;
 
     private final RoleRepository roleRepository;
-
     private final UserMapper userMapper;
+
 
     public AuthController(UserService userService,
                           RoleRepository roleRepository,
@@ -45,13 +46,7 @@ public class AuthController {
     })
     @Operation(summary = "User signup")
     @PostMapping("/signup")
-    public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupDto signUpRequest) {
-        if (userService.existsByUsername(signUpRequest.getUsername())) {
-            return RestUtils.response(ResultType.USERNAME_ALREADY_EXISTS);
-        }
-        if (userService.existsByEmail(signUpRequest.getEmail())) {
-            return RestUtils.response(ResultType.EMAIL_ALREADY_EXISTS);
-        }
+    public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupDto signUpRequest) throws ServiceException {
         userService.addUser(userMapper.fromDto(signUpRequest, roleRepository));
         return RestUtils.response(ResultType.USER_SUCCESSFULLY_CREATED);
     }

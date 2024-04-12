@@ -1,5 +1,6 @@
 package com.manunin.score.secutiry.jwt;
 
+import com.manunin.score.exception.ServiceException;
 import com.manunin.score.service.UserDetailsImpl;
 import com.manunin.score.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,12 @@ public class RefreshTokenAuthenticationProvider implements AuthenticationProvide
         //todo case when refresh token is expired
         String token = (String) authentication.getCredentials();
         String username = tokenProvider.getUserNameFromJwtToken(token);
-        if (!userService.existsByUsername(username)) {
+        UserDetailsImpl user;
+        try {
+            user = UserDetailsImpl.build(userService.findByUsername(username));
+        } catch (ServiceException e) {
             throw new UsernameNotFoundException("User not found: " + username);
         }
-        UserDetailsImpl user = UserDetailsImpl.build(userService.findByUsername(username));
         return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
     }
 

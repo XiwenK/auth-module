@@ -14,7 +14,7 @@ public class RoleDto {
     private long id;
 
     @NotBlank
-    @Schema(example = "Analyst", description = "Role name", required = true)
+    @Schema(example = "Analyst", description = "Role name")
     private String name;
 
     @Schema(example = "true", description = "System flag, says if the role is system")

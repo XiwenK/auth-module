@@ -34,8 +34,8 @@ public class ErrorResponse {
         this.timestamp = timestamp;
     }
 
-    public static ErrorResponse of(String message, ErrorCode code, HttpStatus status) {
-        return new ErrorResponse(message, code, status, new Date());
+    public static ErrorResponse of(String message, ErrorCode code) {
+        return new ErrorResponse(message, code, code.getStatus(), new Date());
     }
 
     public String getMessage() {
