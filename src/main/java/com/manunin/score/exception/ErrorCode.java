@@ -8,7 +8,9 @@ public enum ErrorCode {
     AUTHENTICATION(2, HttpStatus.UNAUTHORIZED),
     JWT_TOKEN_EXPIRED(3, HttpStatus.UNAUTHORIZED),
 
-    BAD_REQUEST_PARAMS(10, HttpStatus.BAD_REQUEST);
+    BAD_REQUEST_PARAMS(10, HttpStatus.BAD_REQUEST),
+
+    ACCESS_DENIED(20, HttpStatus.FORBIDDEN);
 
     private final int code;
     private HttpStatus status;

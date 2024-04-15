@@ -1,20 +1,14 @@
 package com.manunin.score.controller;
 
-import com.manunin.score.dto.MessageResponse;
 import com.manunin.score.dto.SignupDto;
-import com.manunin.score.dto.UserDto;
-import com.manunin.score.exception.ResultType;
 import com.manunin.score.exception.ServiceException;
 import com.manunin.score.mapper.UserMapper;
 import com.manunin.score.model.User;
 import com.manunin.score.repository.RoleRepository;
-import com.manunin.score.secutiry.jwt.JwtTokenProvider;
 import com.manunin.score.service.UserService;
-import com.manunin.score.utils.RestUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,8 +40,7 @@ public class AuthController {
     })
     @Operation(summary = "User signup")
     @PostMapping("/signup")
-    public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupDto signUpRequest) throws ServiceException {
-        userService.addUser(userMapper.fromDto(signUpRequest, roleRepository));
-        return RestUtils.response(ResultType.USER_SUCCESSFULLY_CREATED);
+    public User registerUser(@Valid @RequestBody SignupDto signUpRequest) throws ServiceException {
+        return userService.addUser(userMapper.fromDto(signUpRequest, roleRepository));
     }
 }

@@ -1,6 +1,6 @@
 package com.manunin.score.configuration;
 
-import com.manunin.score.secutiry.jwt.AuthEntryPointJwt;
+import com.manunin.score.exception.ErrorResponseHandler;
 import com.manunin.score.secutiry.jwt.JwtTokenProvider;
 import com.manunin.score.secutiry.jwt.RefreshTokenAuthenticationFilter;
 import com.manunin.score.secutiry.jwt.TokenAuthenticationFilter;
@@ -42,26 +42,25 @@ public class SecurityConfiguration {
     public static final String SWAGGER_ENTRY_POINT = "/swagger-ui/**";
     public static final String API_DOCS_ENTRY_POINT = "/api-docs/**";
     public static final String TOKEN_REFRESH_ENTRY_POINT = "/auth/refreshToken";
-    private final AuthEntryPointJwt unauthorizedHandler;
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
-
     private final AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler;
+
+    private final ErrorResponseHandler accessDeniedHandler;
 
     private final AuthenticationFailureHandler failureHandler;
 
-    public SecurityConfiguration(final AuthEntryPointJwt unauthorizedHandler,
-                                 final JwtTokenProvider jwtTokenProvider,
+    public SecurityConfiguration(final JwtTokenProvider jwtTokenProvider,
                                  final AuthenticationManager authenticationManager,
                                  @Qualifier("restAuthenticationSuccessHandler") final AuthenticationSuccessHandler authenticationSuccessHandler,
                                  @Qualifier("oauth2AuthenticationSuccessHandler") final AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler,
-                                 final AuthenticationFailureHandler failureHandler) {
-        this.unauthorizedHandler = unauthorizedHandler;
+                                 final ErrorResponseHandler accessDeniedHandler, final AuthenticationFailureHandler failureHandler) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
         this.authenticationSuccessHandler = authenticationSuccessHandler;
         this.oauth2AuthenticationSuccessHandler = oauth2AuthenticationSuccessHandler;
+        this.accessDeniedHandler = accessDeniedHandler;
         this.failureHandler = failureHandler;
     }
 
@@ -89,7 +88,7 @@ public class SecurityConfiguration {
                 .csrf()
                     .disable()
                 .exceptionHandling()
-                    .authenticationEntryPoint(unauthorizedHandler)
+                    .accessDeniedHandler(accessDeniedHandler)
                 .and()
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

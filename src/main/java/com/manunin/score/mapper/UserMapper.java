@@ -13,7 +13,6 @@ import java.util.Set;
 
 @Component
 public class UserMapper {
-
     private final PasswordEncoder passwordEncoder;
 
     public UserMapper(PasswordEncoder passwordEncoder) {
