@@ -28,11 +28,8 @@ public class AuthenticationManagerConfiguration {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(ObjectPostProcessor<Object> objectPostProcessor) throws Exception {
-        DefaultAuthenticationEventPublisher eventPublisher = objectPostProcessor
-                .postProcess(new DefaultAuthenticationEventPublisher());
+    public AuthenticationManager authenticationManager(final ObjectPostProcessor<Object> objectPostProcessor) throws Exception {
         var auth = new AuthenticationManagerBuilder(objectPostProcessor);
-        auth.authenticationEventPublisher(eventPublisher);
         auth.authenticationProvider(loginAuthenticationProvider);
         auth.authenticationProvider(jwtAuthenticationProvider);
         auth.authenticationProvider(refreshTokenAuthenticationProvider);

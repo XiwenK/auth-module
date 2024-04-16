@@ -14,7 +14,6 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class ErrorResponseHandler implements AccessDeniedHandler {
     private static final Logger logger = LoggerFactory.getLogger(ErrorResponseHandler.class);
 
     @ExceptionHandler(Exception.class)
-    public void handle(Exception exception, HttpServletResponse response) {
+    public void handle(final Exception exception, final HttpServletResponse response) {
         logger.debug("Processing exception {}", exception.getMessage(), exception);
         if (!response.isCommitted()) {
             try {
@@ -47,7 +46,8 @@ public class ErrorResponseHandler implements AccessDeniedHandler {
         }
     }
 
-    private void handleAuthenticationException(AuthenticationException authenticationException, HttpServletResponse response) throws IOException {
+    private void handleAuthenticationException(final AuthenticationException authenticationException,
+                                               final HttpServletResponse response) throws IOException {
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         if (authenticationException instanceof ExpiredTokenException) {
             JsonUtils.writeValue(response.getWriter(),
@@ -63,7 +63,9 @@ public class ErrorResponseHandler implements AccessDeniedHandler {
     }
 
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
+    public void handle(final HttpServletRequest request,
+                       final HttpServletResponse response,
+                       final AccessDeniedException accessDeniedException) throws IOException {
         if (!response.isCommitted()) {
             response.setStatus(HttpStatus.FORBIDDEN.value());
             JsonUtils.writeValue(response.getWriter(), ErrorResponse.of("exception.accessDenied", ErrorCode.ACCESS_DENIED));

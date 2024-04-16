@@ -40,14 +40,6 @@
             INSERT INTO PRIVILEGES (name) VALUES ('ROLES_MODIFY');
             INSERT INTO PRIVILEGES (name) VALUES ('ROLES_DELETE');
 
-            INSERT INTO PRIVILEGES (name) VALUES ('COMPANIES_VIEW');
-            INSERT INTO PRIVILEGES (name) VALUES ('COMPANIES_MODIFY');
-            INSERT INTO PRIVILEGES (name) VALUES ('COMPANIES_DELETE');
-
-            INSERT INTO PRIVILEGES (name) VALUES ('LICENSES_VIEW');
-            INSERT INTO PRIVILEGES (name) VALUES ('LICENSES_MODIFY');
-            INSERT INTO PRIVILEGES (name) VALUES ('LICENSES_DELETE');
-
         </sql>
         <rollback>
             <dropTable tableName="PRIVILEGES"/>

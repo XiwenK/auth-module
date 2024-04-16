@@ -13,18 +13,18 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 
     private final JwtTokenProvider jwtTokenProvider;
 
-    public JwtAuthenticationProvider(JwtTokenProvider jwtTokenProvider) {
+    public JwtAuthenticationProvider(final JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+    public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
         String rawAccessToken = (String) authentication.getCredentials();
         UserDetails securityUser = authenticate(rawAccessToken);
         return new JwtAuthenticationToken(securityUser);
     }
 
-    public UserDetails authenticate(String accessToken) throws AuthenticationException {
+    public UserDetails authenticate(final String accessToken) throws AuthenticationException {
         if (StringUtils.isEmpty(accessToken)) {
             throw new BadCredentialsException("Token is invalid");
         }
@@ -32,7 +32,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
     }
 
     @Override
-    public boolean supports(Class<?> authentication) {
+    public boolean supports(final Class<?> authentication) {
         return (JwtAuthenticationToken.class.isAssignableFrom(authentication));
     }
 }

@@ -48,30 +48,5 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         this.failureHandler.onAuthenticationFailure(request, response, failed);
     }
-
-    //    @Override
-//    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-//        try {
-//                String jwt = getJwtFromRequest(httpServletRequest);
-//            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-//                String username = tokenProvider.getUserNameFromJwtToken(jwt);
-//                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-//                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-//                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
-//                SecurityContextHolder.getContext().setAuthentication(authentication);
-//            }
-//        } catch (Exception ex) {
-//            logger.error("Could not set user authentication in security context", ex);
-//        }
-//        filterChain.doFilter(httpServletRequest, httpServletResponse);
-//    }
-//
-//    private String getJwtFromRequest(HttpServletRequest request) {
-//        String bearerToken = request.getHeader("Authorization");
-//        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-//            return bearerToken.substring(7);
-//        }
-//        return null;
-//    }
 }
 

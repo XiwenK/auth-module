@@ -15,7 +15,9 @@ public class ErrorResponse {
     @Schema(description = "Error code: " +
             "1 - General error (HTTP: 500 - Internal Server Error), " +
             "2 - Authentication failed (HTTP: 401 - Unauthorized), " +
-            "3 - JWT token expired (HTTP: 401 - Unauthorized)",
+            "3 - JWT token expired (HTTP: 401 - Unauthorized), " +
+            "10 - Bad request parameters (HTTP: 400 - Bad Request), " +
+            "20 - Access denied (HTTP: 403 - Forbidden)",
             example = "2")
     private final ErrorCode code;
 
@@ -27,14 +29,17 @@ public class ErrorResponse {
     @Schema(description = "Error timestamp", example = "2021-08-25T15:00:00")
     private final Date timestamp;
 
-    public ErrorResponse(String message, ErrorCode code, HttpStatus status, Date timestamp) {
+    public ErrorResponse(final String message,
+                         final ErrorCode code,
+                         final HttpStatus status,
+                         final Date timestamp) {
         this.message = message;
         this.code = code;
         this.status = status;
         this.timestamp = timestamp;
     }
 
-    public static ErrorResponse of(String message, ErrorCode code) {
+    public static ErrorResponse of(final String message, final ErrorCode code) {
         return new ErrorResponse(message, code, code.getStatus(), new Date());
     }
 

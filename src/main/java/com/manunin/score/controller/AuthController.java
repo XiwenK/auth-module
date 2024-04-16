@@ -23,12 +23,13 @@ public class AuthController {
     private final UserService userService;
 
     private final RoleRepository roleRepository;
+
     private final UserMapper userMapper;
 
 
-    public AuthController(UserService userService,
-                          RoleRepository roleRepository,
-                          UserMapper userMapper) {
+    public AuthController(final UserService userService,
+                          final RoleRepository roleRepository,
+                          final UserMapper userMapper) {
         this.userService = userService;
         this.roleRepository = roleRepository;
         this.userMapper = userMapper;

@@ -7,11 +7,6 @@
     <include relativeToChangelogFile="true" file="20220416_create_roles_table.xml"/>
     <include relativeToChangelogFile="true" file="20220416_create_roles_privileges_table.xml"/>
     <include relativeToChangelogFile="true" file="20220416_create_user_role_table.xml"/>
-    <include relativeToChangelogFile="true" file="20220822_create_space_table.xml"/>
-    <include relativeToChangelogFile="true" file="20220822_create_users_spaces_table.xml"/>
-    <include relativeToChangelogFile="true" file="20220829_add_primary_key_space_table.xml"/>
-    <include relativeToChangelogFile="true" file="20220901_add_desc_column_space_table.xml"/>
     <include relativeToChangelogFile="true" file="20221016_replica_identity_add_roles_priveleges_table.xml"/>
     <include relativeToChangelogFile="true" file="20221024_replica_identity_add_user_roles_table.xml"/>
-    <include relativeToChangelogFile="true" file="20221024_replica_identity_add_user_spaces_table.xml"/>
 </databaseChangeLog>

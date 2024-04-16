@@ -21,10 +21,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Component
 public class RestAuthenticationFailureHandler implements AuthenticationFailureHandler {
@@ -39,7 +37,7 @@ public class RestAuthenticationFailureHandler implements AuthenticationFailureHa
     @Override
     public void onAuthenticationFailure(final HttpServletRequest request,
                                         final HttpServletResponse response,
-                                        final AuthenticationException e) throws IOException, ServletException {
+                                        final AuthenticationException e) {
         errorResponseHandler.handle(e, response);
     }
 }
