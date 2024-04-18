@@ -99,17 +99,15 @@ public class SecurityConfiguration {
                     .antMatchers(SWAGGER_ENTRY_POINT).permitAll()
                     .antMatchers(API_DOCS_ENTRY_POINT).permitAll()
                     .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()
-                    .antMatchers("/login/oauth2/code/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(buildLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(buildTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(buildTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(buildRefreshTokenProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
         http.oauth2Login()
                 .authorizationEndpoint()
                 .authorizationRequestRepository(authorizationRequestRepository())
                 .and()
-                .loginPage("/oauth2Login")
-                .loginProcessingUrl("/login/oauth2/code/google")
                 .failureHandler(failureHandler)
                 .successHandler(oauth2AuthenticationSuccessHandler);
 
@@ -122,7 +120,7 @@ public class SecurityConfiguration {
     }
 
     protected TokenAuthenticationFilter buildTokenAuthenticationFilter() {
-        List<String> pathsToSkip = new ArrayList<>(Arrays.asList(SIGNIN_ENTRY_POINT, SIGNUP_ENTRY_POINT, SWAGGER_ENTRY_POINT, API_DOCS_ENTRY_POINT, TOKEN_REFRESH_ENTRY_POINT, "/login/oauth2/code/*"));
+        List<String> pathsToSkip = new ArrayList<>(Arrays.asList(SIGNIN_ENTRY_POINT, SIGNUP_ENTRY_POINT, SWAGGER_ENTRY_POINT, API_DOCS_ENTRY_POINT, TOKEN_REFRESH_ENTRY_POINT));
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip);
         TokenAuthenticationFilter filter = new TokenAuthenticationFilter(jwtTokenProvider, matcher, failureHandler);
         filter.setAuthenticationManager(this.authenticationManager);

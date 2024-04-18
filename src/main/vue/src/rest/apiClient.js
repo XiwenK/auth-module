@@ -27,7 +27,7 @@ apiClient.interceptors.request.use(function (config) {
 });
 
 function isTokenExpired(error) {
-  return error.response.status === 401 && error.response?.data?.code === JWS_TOKEN_EXPIRED;
+  return error.response?.status === 401 && error.response?.data?.code === JWS_TOKEN_EXPIRED;
 }
 
 function isRefreshTokenRequest(config) {
@@ -48,22 +48,10 @@ apiClient.interceptors.response.use(function (response) {
       return apiClient.request(req);
     });
   }
-  if (error.response.status === 401) {
+  if (error.response?.status === 401) {
     clearAuthCache();
   }
   return Promise.reject(error);
 });
-
-//interceptor of redirect response
-// apiClient.interceptors.response.use(
-//   response => response,
-//   error => {
-//     if (error.response.status === 401) {
-//       clearAuthCache();
-//       window.location.href = '/login?expired=true';
-//     }
-//     return Promise.reject(error);
-//   }
-// );
 
 export default apiClient;

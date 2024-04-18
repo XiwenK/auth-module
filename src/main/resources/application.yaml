@@ -16,28 +16,21 @@ spring:
           google:
             clientId: ${GOOGLE_CLIENT_ID}
             clientSecret: ${GOOGLE_CLIENT_SECRET}
-#            redirectUri: "http://localhost:9090/test"
             redirectUri: "http://localhost:9090/api/v1/login/oauth2/code/google"
 logging:
   level:
     org:
       springframework:
 #        web: DEBUG
-        security: DEBUG
-
-
-#  jpa:
-#    show-sql: true
-#    properties:
-#      hibernate:
-#        format_sql: true
-
-
+#        security: DEBUG
 springdoc:
     api-docs:
         path: /api-docs
     swagger-ui:
       path: /swagger-ui.html
-app:
-  jwtSecret: secret
-  jwtExpirationInMs: 86400000
+security:
+  # JWT parameters
+  jwt:
+    secret: ${JWT_SECRET}
+    tokenExpirationTime: ${JWT_TOKEN_EXPIRATION_TIME:3600} # in seconds (default: 1h)
+    refreshTokenExpirationTime: ${JWT_REFRESH_TOKEN_EXPIRATION_TIME:1209600000} # in seconds (default: 14 days)

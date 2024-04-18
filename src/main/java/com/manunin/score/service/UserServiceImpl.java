@@ -46,4 +46,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new ServiceException(ErrorCode.BAD_REQUEST_PARAMS, "exception.user.notFound"));
     }
+
+    @Override
+    public Long getUsersCount() {
+        return userRepository.count();
+    }
 }

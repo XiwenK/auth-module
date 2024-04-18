@@ -8,4 +8,5 @@ public interface UserService {
     boolean existsByUsername(String name);
     boolean existsByEmail(String email);
     User findByUsername(String username) throws ServiceException;
+    Long getUsersCount();
 }

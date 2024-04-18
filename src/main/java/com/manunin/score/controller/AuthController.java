@@ -9,10 +9,7 @@ import com.manunin.score.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -41,7 +38,16 @@ public class AuthController {
     })
     @Operation(summary = "User signup")
     @PostMapping("/signup")
-    public User registerUser(@Valid @RequestBody SignupDto signUpRequest) throws ServiceException {
+    public User registerUser(@Valid @RequestBody final SignupDto signUpRequest) throws ServiceException {
         return userService.addUser(userMapper.fromDto(signUpRequest, roleRepository));
+    }
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Number of users in the system"),
+            @ApiResponse(responseCode = "400", description = "Error while getting number of users")
+    })
+    @GetMapping("/users/count")
+    public Long getUsersCount() {
+        return userService.getUsersCount();
     }
 }

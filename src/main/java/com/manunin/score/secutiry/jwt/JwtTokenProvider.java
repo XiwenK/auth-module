@@ -28,11 +28,14 @@ public class JwtTokenProvider {
     public static final String JWT_TOKEN_HEADER_PARAM = HEADER;
     public static final String HEADER_PREFIX = "Bearer ";
     private final UserDetailsService userDetailsService;
-    @Value("${app.jwtSecret}")
+    @Value("${security.jwt.secret}")
     private String jwtSecret;
 
-    @Value("${app.jwtExpirationInMs}")
-    private int jwtExpirationInMs;
+    @Value("${security.jwt.tokenExpirationTime}")
+    private int tokenExpirationInSec;
+
+    @Value("${security.jwt.refreshTokenExpirationTime}")
+    private int refreshTokenExpirationInSec;
 
     public JwtTokenProvider(final UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
@@ -46,7 +49,7 @@ public class JwtTokenProvider {
 
     private String createRefreshToken(UserDetails user) {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + 900_000);
+        Date expiryDate = new Date(now.getTime() + refreshTokenExpirationInSec * 1000L);
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
@@ -58,7 +61,7 @@ public class JwtTokenProvider {
 
     private String createToken(UserDetails user) {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + 600_000);
+        Date expiryDate = new Date(now.getTime() + tokenExpirationInSec * 1000L);
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
