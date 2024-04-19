@@ -8,7 +8,6 @@ import endpoints from "src/rest/endpoints";
 const userStore = useUserStore();
 
 function authHeader() {
-  // const user = JSON.parse(localStorage.getItem('user'));
   let token = userStore.getToken;
   if (token) {
     return {Authorization: 'Bearer ' + token};

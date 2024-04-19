@@ -4,17 +4,17 @@ This is a template project for a VueJS frontend with a Spring Boot backend. The 
 ## Stack
 - Java 11
 - VueJS frontend (Quasar)
-- Spring Boot backend (v2.5.2)
-- Spring Security (v5.5.1)
+- Spring Boot backend
+- Spring Security
 - OAuth2 (Google)
 - JWT
-- PostgreSQL (v13.3)
+- PostgreSQL
 - Liquibase
 
 ## Prerequisites
 ### Database setup
 1. Install PostgreSQL or use a Docker container (see `docker-compose.yml`).
-2. Create a database named `template` with a user `template` and password `template`. Command:
+2. Create a database named `authdb` with a user `authdb` and password `password`. Command:
 ```shell
 psql -U postgres -c "CREATE DATABASE template;"
 psql -U postgres -c "CREATE USER template WITH ENCRYPTED PASSWORD 'template';"

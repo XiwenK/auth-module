@@ -1,5 +1,6 @@
 <template>
-  <q-layout view="lHh lpR fFf" style="height: 100vh" class="main-layout">
+  <q-layout view="lHh lpR fFf"
+            class="main-layout">
     <q-header class="header">
       <q-toolbar class="q-px-md">
         <div class="main-layout__manu-button">
@@ -58,27 +59,18 @@
 
 <script setup>
 import {ref, computed} from 'vue'
-import EssentialLink from '../components/EssentialLink.vue';
+import {useRouter} from "vue-router";
+import {useQuasar} from "quasar";
 import {useI18n} from 'vue-i18n';
 import {useUserStore} from "stores/user";
-import authService from "pages/Login/service/authService";
-import {useRouter} from "vue-router";
 import {useRouterConfig} from "stores/useRouterConfig";
-import {useQuasar} from "quasar";
+import authService from "pages/Login/service/authService";
+import EssentialLink from '../components/EssentialLink.vue';
+
+const {t} = useI18n();
 
 const store = useUserStore();
-const {t} = useI18n();
-const leftDrawerOpen = ref(false);
-const router = useRouter();
-
 const loggedIn = computed(() => store.getToken);
-const routerConfig = useRouterConfig();
-const essentialLinks = computed(() => routerConfig.essentialLinks);
-const miniState = ref(false);
-const selected = ref('Groups');
-
-const $q = useQuasar();
-
 const logout = () => {
   authService.logout().then(() => {
     store.logout();
@@ -86,6 +78,15 @@ const logout = () => {
   })
 }
 
+const leftDrawerOpen = ref(false);
+const router = useRouter();
+const routerConfig = useRouterConfig();
+const essentialLinks = computed(() => routerConfig.essentialLinks);
+const miniState = ref(false);
+
+const selected = ref('Groups');
+
+const $q = useQuasar();
 const toggleLeftDrawer = () => {
   if ($q.screen.gt.sm) {
     miniState.value = !miniState.value;

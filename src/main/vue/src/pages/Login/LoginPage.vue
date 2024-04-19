@@ -27,11 +27,22 @@
                 lazy-rules="ondemand"
                 :rules="[ val => !!val || $t('loginPage.validations.passwordMustPresent')]"
               />
-              <q-btn class="q-mt-lg full-width" @click="onLoginClick()" color="primary" label="Login"/>
-              <q-btn class="q-mt-lg full-width" @click="loginWithGoogle()" color="primary" label="Login with Google"/>
+              <q-btn class="q-mt-lg full-width"
+                     @click="onLoginClick()"
+                     color="primary"
+                     label="Login"/>
+              <q-btn class="q-mt-lg full-width"
+                     @click="loginWithGoogle()"
+                     color="primary"
+                     label="Login with Google"/>
               <div class="row justify-center q-mt-md items-center">
                 <div class="text-caption">{{ t('loginPage.registration.message') }}</div>
-                <q-btn flat dense color="primary" :label="$t('loginPage.registration.button')"  @click="onRegisterClick()"/>
+                <q-btn
+                  flat
+                  dense
+                  color="primary"
+                  :label="$t('loginPage.registration.button')"
+                  @click="onRegisterClick()"/>
               </div>
             </q-form>
           </q-card-section>
