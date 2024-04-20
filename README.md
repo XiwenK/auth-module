@@ -4,22 +4,26 @@ This is a template project for a VueJS frontend with a Spring Boot backend. The 
 ## Stack
 - Java 11
 - VueJS frontend (Quasar)
-- Spring Boot backend
+- Spring Boot
 - Spring Security
 - OAuth2 (Google)
 - JWT
 - PostgreSQL
 - Liquibase
+- Docker
 
 ## Prerequisites
+### Install Docker Desktop
+1. Go to the [Docker Desktop](https://www.docker.com/products/docker-desktop) website.
+2. Download and install Docker Desktop.
+3. Run Docker Desktop.
+
 ### Database setup
-1. Install PostgreSQL or use a Docker container (see `docker-compose.yml`).
-2. Create a database named `authdb` with a user `authdb` and password `password`. Command:
+1. Run docker-compose to start a PostgreSQL database (database will be available by URL `jdbc:postgresql://localhost:5433/postgres`, username `postgres`, password `example`):
 ```shell
-psql -U postgres -c "CREATE DATABASE template;"
-psql -U postgres -c "CREATE USER template WITH ENCRYPTED PASSWORD 'template';"
-psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE template TO template;"
+docker-compose up -d
 ```
+2. Copy the username and password and add them to environment variables `POSTGRES_USER` and `POSTGRES_PASSWORD`. The `application.yaml` file is already configured to read these environment variables.
 
 ### Google OAuth2 setup
 1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
@@ -38,7 +42,7 @@ Run the following command in the root directory of the project:
 maven clean install
 ```
 
-### Build frontend
+### Install frontend
 Run the following command in the root directory of the project:
 ```shell
 cd src/main/vue
@@ -53,6 +57,7 @@ java -jar target/auth-0.0.1-SNAPSHOT.jar
 ```
 
 ### Frontend
+Run the following command in the root directory of the project:
 ```shell
 cd src/main/vue
 quasar dev

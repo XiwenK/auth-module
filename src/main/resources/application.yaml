@@ -4,8 +4,10 @@ server:
     context-path: /api/v1
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/manunin
     driver-class-name: org.postgresql.Driver
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5433/postgres}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
   liquibase:
     change-log: /changelog/changelog-master.xml
     enabled: true
