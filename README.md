@@ -3,11 +3,9 @@ This is a template project for a VueJS frontend with a Spring Boot backend. The 
 
 ## Stack
 - Java 11
-- VueJS frontend (Quasar)
+- VueJS (Quasar)
 - Spring Boot
 - Spring Security
-- OAuth2 (Google)
-- JWT
 - PostgreSQL
 - Liquibase
 - Docker
@@ -24,6 +22,9 @@ This is a template project for a VueJS frontend with a Spring Boot backend. The 
 docker-compose up -d
 ```
 2. Copy the username and password and add them to environment variables `POSTGRES_USER` and `POSTGRES_PASSWORD`. The `application.yaml` file is already configured to read these environment variables.
+
+### JWT secret setup
+1. Set any JWT key to the environment variable JWT_SECRET. The `application.yaml` file is already configured to read this environment variable.
 
 ### Google OAuth2 setup
 1. Go to the [Google Cloud Console](https://console.cloud.google.com/).

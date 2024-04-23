@@ -114,7 +114,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.manunin.score.AuthorizationService</mainClass>
+                    <mainClass>com.manunin.auth.AuthorizationService</mainClass>
                 </configuration>
             </plugin>
             <plugin>
