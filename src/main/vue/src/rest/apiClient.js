@@ -7,22 +7,8 @@ import endpoints from "src/rest/endpoints";
 
 const userStore = useUserStore();
 
-function authHeader() {
-  let token = userStore.getToken;
-  if (token) {
-    return {Authorization: 'Bearer ' + token};
-  } else {
-    return {};
-  }
-}
-
 const apiClient = axios.create({
   baseURL: process.env.API_URL
-});
-
-apiClient.interceptors.request.use(function (config) {
-  config.headers = authHeader();
-  return config;
 });
 
 function isTokenExpired(error) {
@@ -32,6 +18,20 @@ function isTokenExpired(error) {
 function isRefreshTokenRequest(config) {
   return config.url === endpoints.refreshToken;
 }
+
+function authHeader() {
+  let token = userStore.getToken;
+  if (token) {
+    return {Authorization: 'Bearer ' + token};
+  } else {
+    return {};
+  }
+}
+
+apiClient.interceptors.request.use(function (config) {
+  config.headers = authHeader();
+  return config;
+});
 
 apiClient.interceptors.response.use(function (response) {
   return response;

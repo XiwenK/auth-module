@@ -9,11 +9,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JwtAuthenticationProvider implements AuthenticationProvider {
+public class TokenAuthenticationProvider implements AuthenticationProvider {
 
     private final JwtTokenProvider jwtTokenProvider;
 
-    public JwtAuthenticationProvider(final JwtTokenProvider jwtTokenProvider) {
+    public TokenAuthenticationProvider(final JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 

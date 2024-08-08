@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@Component(value = "restAuthenticationSuccessHandler")
-public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+@Component(value = "loginAuthenticationSuccessHandler")
+public class LoginAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private final JwtTokenProvider tokenProvider;
 
-    public RestAuthenticationSuccessHandler(final JwtTokenProvider tokenProvider) {
+    public LoginAuthenticationSuccessHandler(final JwtTokenProvider tokenProvider) {
         this.tokenProvider = tokenProvider;
     }
 

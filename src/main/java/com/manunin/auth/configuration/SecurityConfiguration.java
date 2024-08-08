@@ -51,7 +51,7 @@ public class SecurityConfiguration {
 
     public SecurityConfiguration(final JwtTokenProvider jwtTokenProvider,
                                  final AuthenticationManager authenticationManager,
-                                 @Qualifier("restAuthenticationSuccessHandler") final AuthenticationSuccessHandler authenticationSuccessHandler,
+                                 @Qualifier("loginAuthenticationSuccessHandler") final AuthenticationSuccessHandler authenticationSuccessHandler,
                                  @Qualifier("oauth2AuthenticationSuccessHandler") final AuthenticationSuccessHandler oauth2AuthenticationSuccessHandler,
                                  final ErrorResponseHandler accessDeniedHandler,
                                  final AuthenticationFailureHandler failureHandler) {
@@ -114,7 +114,8 @@ public class SecurityConfiguration {
     }
 
     protected TokenAuthenticationFilter buildTokenAuthenticationFilter() {
-        List<String> pathsToSkip = new ArrayList<>(Arrays.asList(SIGNIN_ENTRY_POINT, SIGNUP_ENTRY_POINT, SWAGGER_ENTRY_POINT, API_DOCS_ENTRY_POINT, TOKEN_REFRESH_ENTRY_POINT));
+        List<String> pathsToSkip = new ArrayList<>(Arrays.asList(SIGNIN_ENTRY_POINT, SIGNUP_ENTRY_POINT,
+                SWAGGER_ENTRY_POINT, API_DOCS_ENTRY_POINT, TOKEN_REFRESH_ENTRY_POINT));
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip);
         TokenAuthenticationFilter filter = new TokenAuthenticationFilter(jwtTokenProvider, matcher, failureHandler);
         filter.setAuthenticationManager(this.authenticationManager);
@@ -123,7 +124,8 @@ public class SecurityConfiguration {
 
     @Bean
     protected LoginAuthenticationFilter buildLoginProcessingFilter() {
-        LoginAuthenticationFilter filter = new LoginAuthenticationFilter(SIGNIN_ENTRY_POINT, authenticationSuccessHandler, failureHandler);
+        LoginAuthenticationFilter filter = new LoginAuthenticationFilter(SIGNIN_ENTRY_POINT,
+                authenticationSuccessHandler, failureHandler);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;
     }
