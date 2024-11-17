@@ -7,6 +7,8 @@ import com.manunin.auth.secutiry.jwt.JwtPair;
 import com.manunin.auth.secutiry.jwt.JwtTokenProvider;
 import com.manunin.auth.service.UserDetailsImpl;
 import com.manunin.auth.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -14,8 +16,6 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Component;
 
 import javax.security.sasl.AuthenticationException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component(value = "oauth2AuthenticationSuccessHandler")

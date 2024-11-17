@@ -3,6 +3,10 @@ package com.manunin.auth.secutiry.login;
 import com.manunin.auth.dto.LoginDto;
 import com.manunin.auth.secutiry.exception.AuthMethodNotSupportedException;
 import com.manunin.auth.utils.JsonUtils;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +19,6 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
@@ -66,6 +66,7 @@ public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingF
                                             final FilterChain chain, Authentication authResult) throws IOException, ServletException {
         this.successHandler.onAuthenticationSuccess(request, response, authResult);
     }
+
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {

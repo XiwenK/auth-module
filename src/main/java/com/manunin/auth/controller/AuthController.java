@@ -9,18 +9,17 @@ import com.manunin.auth.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-
     private final UserService userService;
-
     private final RoleRepository roleRepository;
-
     private final UserMapper userMapper;
 
 
@@ -38,7 +37,7 @@ public class AuthController {
     })
     @Operation(summary = "User signup")
     @PostMapping("/signup")
-    public User registerUser(@Valid @RequestBody final SignupDto signUpRequest) throws ServiceException {
+    public User registerUser(@RequestBody final SignupDto signUpRequest) throws ServiceException {
         return userService.addUser(userMapper.fromDto(signUpRequest, roleRepository));
     }
 

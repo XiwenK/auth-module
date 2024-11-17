@@ -14,6 +14,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
 import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository;
@@ -77,33 +78,27 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
         http
-                .cors()
-                .and()
-                .csrf()
-                    .disable()
-                .exceptionHandling()
-                    .accessDeniedHandler(accessDeniedHandler)
-                .and()
-                .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                    .antMatchers(SIGNIN_ENTRY_POINT).permitAll()
-                    .antMatchers(SIGNUP_ENTRY_POINT).permitAll()
-                    .antMatchers(SWAGGER_ENTRY_POINT).permitAll()
-                    .antMatchers(API_DOCS_ENTRY_POINT).permitAll()
-                    .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()
-                .anyRequest().authenticated()
-                .and()
+                .csrf(AbstractHttpConfigurer::disable)
+                .exceptionHandling(configurer -> configurer
+                    .accessDeniedHandler(accessDeniedHandler))
+                .sessionManagement(configurer -> configurer
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(authorize -> authorize
+                    .requestMatchers(SIGNIN_ENTRY_POINT).permitAll()
+                    .requestMatchers(SIGNUP_ENTRY_POINT).permitAll()
+                    .requestMatchers(SWAGGER_ENTRY_POINT).permitAll()
+                    .requestMatchers(API_DOCS_ENTRY_POINT).permitAll()
+                    .requestMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()
+                    .anyRequest().authenticated()
+                )
                 .addFilterBefore(buildLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildRefreshTokenProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.oauth2Login()
-                .authorizationEndpoint()
-                .authorizationRequestRepository(authorizationRequestRepository())
-                .and()
+        http.oauth2Login(configurer -> configurer
+                .authorizationEndpoint(config -> config
+                        .authorizationRequestRepository(authorizationRequestRepository()))
                 .failureHandler(failureHandler)
-                .successHandler(oauth2AuthenticationSuccessHandler);
+                .successHandler(oauth2AuthenticationSuccessHandler));
 
         return http.build();
     }
@@ -132,7 +127,8 @@ public class SecurityConfiguration {
 
     @Bean
     protected RefreshTokenAuthenticationFilter buildRefreshTokenProcessingFilter() {
-        RefreshTokenAuthenticationFilter filter = new RefreshTokenAuthenticationFilter(TOKEN_REFRESH_ENTRY_POINT, authenticationSuccessHandler, failureHandler);
+        RefreshTokenAuthenticationFilter filter = new RefreshTokenAuthenticationFilter(TOKEN_REFRESH_ENTRY_POINT,
+                authenticationSuccessHandler, failureHandler);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;
     }

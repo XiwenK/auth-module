@@ -2,10 +2,10 @@
 This is a template project for a VueJS frontend with a Spring Boot backend. The backend is secured with Spring Security and OAuth2. The frontend is secured with JWT. The backend uses PostgreSQL as a database.
 
 ## Stack
-- Java 11
+- Java 21
 - VueJS (Quasar)
-- Spring Boot
-- Spring Security
+- Spring Boot 3.3.5
+- Spring Security 6.3.4
 - PostgreSQL
 - Liquibase
 - Docker

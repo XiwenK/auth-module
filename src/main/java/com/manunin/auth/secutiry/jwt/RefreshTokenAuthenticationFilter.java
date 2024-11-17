@@ -3,6 +3,10 @@ package com.manunin.auth.secutiry.jwt;
 import com.manunin.auth.dto.RefreshTokenDto;
 import com.manunin.auth.secutiry.exception.AuthMethodNotSupportedException;
 import com.manunin.auth.utils.JsonUtils;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -12,10 +16,6 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class RefreshTokenAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
@@ -33,7 +33,8 @@ public class RefreshTokenAuthenticationFilter extends AbstractAuthenticationProc
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
+    public Authentication attemptAuthentication(final HttpServletRequest request,
+                                                final HttpServletResponse response) throws AuthenticationException {
         if (!HttpMethod.POST.name().equals(request.getMethod())) {
             if(logger.isDebugEnabled()) {
                 logger.debug("Authentication method not supported. Request method: " + request.getMethod());

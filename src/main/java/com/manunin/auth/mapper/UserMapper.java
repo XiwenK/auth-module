@@ -13,20 +13,26 @@ import java.util.Set;
 public class UserMapper {
 
     public User fromDto(final SignupDto signUpDto, final RoleRepository roleRepository) {
-        User user = new User(signUpDto.getUsername(),
+        User user = createUser(signUpDto);
+        addRoles(roleRepository, user, signUpDto.getRoles());
+        return user;
+    }
+
+    private static User createUser(final SignupDto signUpDto) {
+        return new User(signUpDto.getUsername(),
                 signUpDto.getEmail(),
                 signUpDto.getPassword(),
                 signUpDto.getFirstName(),
                 signUpDto.getLastName());
-        //set roles
-        Set<String> roles = signUpDto.getRoles();
-        if (roles != null) {
-            roles.forEach(role -> {
-                Role userRole = roleRepository.findByName(ERole.valueOf(role).getName())
-                        .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                user.getRoles().add(userRole);
-            });
-        }
-        return user;
+    }
+
+    private static void addRoles(final RoleRepository roleRepository, final User user, final Set<String> roles) {
+        if (roles == null) return;
+        roles.forEach(role -> user.addRole(getRoleFromRepository(roleRepository, role)));
+    }
+
+    private static Role getRoleFromRepository(final RoleRepository roleRepository, final String role) {
+        return roleRepository.findByName(ERole.valueOf(role).getName())
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
     }
 }
