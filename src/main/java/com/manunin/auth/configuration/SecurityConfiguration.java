@@ -78,6 +78,7 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(configurer -> configurer
                     .accessDeniedHandler(accessDeniedHandler))

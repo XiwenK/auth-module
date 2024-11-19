@@ -3,7 +3,7 @@ package com.manunin.auth.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 
-public class RefreshTokenDto {
+public class RefreshTokenDTO {
 
     @NotBlank
     @Schema(example = "refreshToken", description = "Refresh token")

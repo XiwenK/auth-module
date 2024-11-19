@@ -28,14 +28,14 @@
             />
             <q-input
               v-model="firstName"
-              :label="$t('userList.fields.firstName')"
+              :label="$t('registerPage.fields.firstName')"
               type="text"
-              :rules="[ val => !!val || $t('userList.fields.validations.firstNameMustPresent') ]"/>
+              :rules="[ val => !!val || $t('registerPage.validations.firstNameMustPresent') ]"/>
             <q-input
               v-model="lastName"
-              :label="$t('userList.fields.lastName')"
+              :label="$t('registerPage.fields.lastName')"
               type="text"
-              :rules="[ val => !!val || $t('userList.fields.validations.lastNameMustPresent') ]"/>
+              :rules="[ val => !!val || $t('registerPage.validations.lastNameMustPresent') ]"/>
             <q-input
               v-model="password"
               :label="$t('registerPage.fields.password')"

@@ -1,6 +1,6 @@
 package com.manunin.auth.controller;
 
-import com.manunin.auth.dto.SignupDto;
+import com.manunin.auth.dto.SignupDTO;
 import com.manunin.auth.exception.ServiceException;
 import com.manunin.auth.mapper.UserMapper;
 import com.manunin.auth.model.User;
@@ -37,7 +37,7 @@ public class AuthController {
     })
     @Operation(summary = "User signup")
     @PostMapping("/signup")
-    public User registerUser(@RequestBody final SignupDto signUpRequest) throws ServiceException {
+    public User registerUser(@RequestBody final SignupDTO signUpRequest) throws ServiceException {
         return userService.addUser(userMapper.fromDto(signUpRequest, roleRepository));
     }
 

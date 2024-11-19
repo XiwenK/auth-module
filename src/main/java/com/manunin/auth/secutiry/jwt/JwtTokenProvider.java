@@ -41,37 +41,36 @@ public class JwtTokenProvider {
         this.userDetailsService = userDetailsService;
     }
 
-    public JwtPair generateTokenPair(UserDetails user) {
+    public JwtPair generateTokenPair(final UserDetails user) {
         String token = createToken(user);
         String refreshToken = createRefreshToken(user);
         return new JwtPair(token, refreshToken);
     }
 
-    private String createRefreshToken(UserDetails user) {
-        Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + refreshTokenExpirationInSec * 1000L);
-
+    private String createRefreshToken(final UserDetails user) {
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(expiryDate)
+                .setExpiration(getExpiryDate(refreshTokenExpirationInSec))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
 
-    private String createToken(UserDetails user) {
-        Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + tokenExpirationInSec * 1000L);
-
+    private String createToken(final UserDetails user) {
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(expiryDate)
+                .setExpiration(getExpiryDate(tokenExpirationInSec))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
 
-    public UserDetails parseJwtToken(String accessToken) {
+    private Date getExpiryDate(final int tokenExpirationInSec) {
+        Date now = new Date();
+        return new Date(now.getTime() + tokenExpirationInSec * 1000L);
+    }
+
+    public UserDetails parseJwtToken(final String accessToken) {
         UserDetails userDetails = null;
         if (StringUtils.hasText(accessToken) && validateToken(accessToken)) {
             String username = getUserNameFromJwtToken(accessToken);
@@ -80,14 +79,14 @@ public class JwtTokenProvider {
         return userDetails;
     }
 
-    public String getUserNameFromJwtToken(String token) {
+    public String getUserNameFromJwtToken(final String token) {
         return Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
                 .getBody().getSubject();
     }
 
-    public boolean validateToken(String authToken) {
+    public boolean validateToken(final String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
@@ -100,12 +99,11 @@ public class JwtTokenProvider {
         }
     }
 
-    public String getTokenFromRequest(HttpServletRequest request) {
+    public String getTokenFromRequest(final HttpServletRequest request) {
         String header = request.getHeader(JWT_TOKEN_HEADER_PARAM);
         if (org.apache.commons.lang3.StringUtils.isBlank(header)) {
             throw new AuthenticationServiceException("Authorization header cannot be blank!");
         }
-
         if (header.length() < HEADER_PREFIX.length()) {
             throw new AuthenticationServiceException("Invalid authorization header size.");
         }

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 import java.util.Set;
 
-public class SignupDto {
+public class SignupDTO {
 
     @NotBlank
     @Size(min = 3, max = 20)

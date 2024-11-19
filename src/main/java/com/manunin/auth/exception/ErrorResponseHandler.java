@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @RestControllerAdvice
 public class ErrorResponseHandler implements AccessDeniedHandler {
@@ -26,38 +27,50 @@ public class ErrorResponseHandler implements AccessDeniedHandler {
     @ExceptionHandler(Exception.class)
     public void handle(final Exception exception, final HttpServletResponse response) {
         logger.debug("Processing exception {}", exception.getMessage(), exception);
-        if (!response.isCommitted()) {
-            try {
-                response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                if (exception instanceof AuthenticationException) {
-                    handleAuthenticationException((AuthenticationException) exception, response);
-                } else if (exception instanceof ServiceException) {
-                    ServiceException serviceException = (ServiceException) exception;
-                    ErrorCode errorCode = serviceException.getErrorCode();
-                    response.setStatus(errorCode.getStatus().value());
-                    JsonUtils.writeValue(response.getWriter(), ErrorResponse.of(serviceException.getMessage(), errorCode));
-                } else {
-                    response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-                    JsonUtils.writeValue(response.getWriter(), ErrorResponse.of(exception.getMessage(), ErrorCode.GENERAL));
-                }
-            } catch (IOException e) {
-                logger.error("Can't handle exception", e);
-            }
+        if (response.isCommitted()) {
+            return;
+        }
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        if (exception instanceof AuthenticationException) {
+            handleAuthenticationException((AuthenticationException) exception, response);
+        } else if (exception instanceof ServiceException) {
+            handleServiceException((ServiceException) exception, response);
+        } else {
+            handleInternalServerError(exception, response);
         }
     }
 
-    private void handleAuthenticationException(final AuthenticationException authenticationException,
-                                               final HttpServletResponse response) throws IOException {
+    private static void handleInternalServerError(Exception exception, HttpServletResponse response) {
+        response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        JsonUtils.writeValue(getWriter(response), ErrorResponse.of(exception.getMessage(), ErrorCode.GENERAL));
+    }
+
+    private static void handleServiceException(ServiceException exception, HttpServletResponse response) {
+        ErrorCode errorCode = exception.getErrorCode();
+        response.setStatus(errorCode.getStatus().value());
+        JsonUtils.writeValue(getWriter(response), ErrorResponse.of(exception.getMessage(), errorCode));
+    }
+
+    private static PrintWriter getWriter(HttpServletResponse response) {
+        try {
+            return response.getWriter();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void handleAuthenticationException(final AuthenticationException authenticationException,
+                                               final HttpServletResponse response) {
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         if (authenticationException instanceof ExpiredTokenException) {
-            JsonUtils.writeValue(response.getWriter(),
-                    ErrorResponse.of("Token has expired", ErrorCode.JWT_TOKEN_EXPIRED));
+            JsonUtils.writeValue(getWriter(response),
+                    ErrorResponse.of("exception.tokenExpired", ErrorCode.JWT_TOKEN_EXPIRED));
         }
         if (authenticationException instanceof BadCredentialsException || authenticationException instanceof UsernameNotFoundException) {
-            JsonUtils.writeValue(response.getWriter(),
+            JsonUtils.writeValue(getWriter(response),
                     ErrorResponse.of("exception.badCredentials", ErrorCode.AUTHENTICATION));
         } else {
-            JsonUtils.writeValue(response.getWriter(),
+            JsonUtils.writeValue(getWriter(response),
                     ErrorResponse.of("exception.authenticationFailed", ErrorCode.AUTHENTICATION));
         }
     }
@@ -65,10 +78,10 @@ public class ErrorResponseHandler implements AccessDeniedHandler {
     @Override
     public void handle(final HttpServletRequest request,
                        final HttpServletResponse response,
-                       final AccessDeniedException accessDeniedException) throws IOException {
+                       final AccessDeniedException accessDeniedException) {
         if (!response.isCommitted()) {
             response.setStatus(HttpStatus.FORBIDDEN.value());
-            JsonUtils.writeValue(response.getWriter(), ErrorResponse.of("exception.accessDenied", ErrorCode.ACCESS_DENIED));
+            JsonUtils.writeValue(getWriter(response), ErrorResponse.of("exception.accessDenied", ErrorCode.ACCESS_DENIED));
         }
     }
 }

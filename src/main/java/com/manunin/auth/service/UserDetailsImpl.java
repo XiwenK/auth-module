@@ -13,34 +13,31 @@ import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
-    private Long id;
-    private String username;
-    private String email;
+    private final Long id;
+    private final String username;
+    private final String email;
     @JsonIgnore
-    private String password;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final String password;
+    private final Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id, String username, String email, String password,
-                           Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    public UserDetailsImpl(final User user, final Collection<? extends GrantedAuthority> authorities) {
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
         this.authorities = authorities;
     }
 
 
     public static UserDetailsImpl build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream()
+        return new UserDetailsImpl(user, buildGrantedAuthorities(user));
+    }
+
+    private static List<GrantedAuthority> buildGrantedAuthorities(final User user) {
+        return user.getRoles().stream()
                 .flatMap(role -> role.getPrivileges().stream())
                 .map(privilege -> new SimpleGrantedAuthority(privilege.getName()))
                 .collect(Collectors.toList());
-        return new UserDetailsImpl(
-                user.getId(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getPassword(),
-                authorities);
     }
 
     public Long getId() {

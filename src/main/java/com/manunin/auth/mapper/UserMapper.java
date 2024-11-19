@@ -1,6 +1,6 @@
 package com.manunin.auth.mapper;
 
-import com.manunin.auth.dto.SignupDto;
+import com.manunin.auth.dto.SignupDTO;
 import com.manunin.auth.model.ERole;
 import com.manunin.auth.model.Role;
 import com.manunin.auth.model.User;
@@ -12,13 +12,13 @@ import java.util.Set;
 @Component
 public class UserMapper {
 
-    public User fromDto(final SignupDto signUpDto, final RoleRepository roleRepository) {
+    public User fromDto(final SignupDTO signUpDto, final RoleRepository roleRepository) {
         User user = createUser(signUpDto);
         addRoles(roleRepository, user, signUpDto.getRoles());
         return user;
     }
 
-    private static User createUser(final SignupDto signUpDto) {
+    private static User createUser(final SignupDTO signUpDto) {
         return new User(signUpDto.getUsername(),
                 signUpDto.getEmail(),
                 signUpDto.getPassword(),

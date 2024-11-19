@@ -35,25 +35,24 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
         Assert.notNull(authentication, "No authentication data provided");
         String username = (String) authentication.getPrincipal();
         String password = authentication.getCredentials().toString();
-
         UserDetails securityUser = authenticateByUsernameAndPassword(username, password);
-
         return new UsernamePasswordAuthenticationToken(securityUser, null, securityUser.getAuthorities());
     }
 
     private UserDetails authenticateByUsernameAndPassword(final String username, final String password) {
-        User user;
-        try {
-            user = userService.findByUsername(username);
-        } catch (ServiceException e) {
-            throw new UsernameNotFoundException("User not found: " + username);
-        }
-
+        User user = getUser(username);
         if (!encoder.matches(password, user.getPassword())) {
             throw new BadCredentialsException("exception.badCredentials");
         }
-
         return UserDetailsImpl.build(user);
+    }
+
+    private User getUser(final String username) {
+        try {
+            return userService.findByUsername(username);
+        } catch (ServiceException e) {
+            throw new UsernameNotFoundException("User not found: " + username);
+        }
     }
 
     @Override

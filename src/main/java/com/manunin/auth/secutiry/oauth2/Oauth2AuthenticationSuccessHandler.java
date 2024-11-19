@@ -21,6 +21,9 @@ import java.io.IOException;
 @Component(value = "oauth2AuthenticationSuccessHandler")
 public class Oauth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
+    public static final String LOGIN_URL = "http://localhost:9000/login";
+    public static final String EMAIL_ATTRIBUTE = "email";
+    public static final String GIVEN_NAME_ATTRIBUTE = "given_name";
     private final JwtTokenProvider tokenProvider;
     private final OAuth2AuthorizedClientService oAuth2AuthorizedClientService;
 
@@ -40,23 +43,22 @@ public class Oauth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                                         final Authentication authentication) throws IOException {
 
         OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) authentication;
+        String email = token.getPrincipal().getAttribute(EMAIL_ATTRIBUTE);
+        User user = getUser(token, email);
+        JwtPair jwtPair = tokenProvider.generateTokenPair(UserDetailsImpl.build(user));
+        getRedirectStrategy().sendRedirect(request, response, getRedirectUrl(LOGIN_URL, jwtPair));
+    }
 
-        String email = token.getPrincipal().getAttribute("email");
+    private User getUser(OAuth2AuthenticationToken token, String email) throws AuthenticationException {
         boolean existsByEmail = userService.existsByEmail(email);
-        User user;
         try {
-            if (!existsByEmail) {
-                user = userService.addUser(new User(email, email, email, token.getPrincipal().getAttribute("given_name"), token.getPrincipal().getAttribute("family_name")));
-            } else {
-                user = userService.findByEmail(email);
+            if (existsByEmail) {
+                return userService.findByEmail(email);
             }
+            return userService.addUser(new User(email, email, email, token.getPrincipal().getAttribute(GIVEN_NAME_ATTRIBUTE), token.getPrincipal().getAttribute("family_name")));
         } catch (ServiceException e) {
             throw new AuthenticationException(ErrorCode.GENERAL.name(), new ServiceException(ErrorCode.GENERAL, "User with email " + email + " already exists"));
         }
-
-        JwtPair jwtPair = tokenProvider.generateTokenPair(UserDetailsImpl.build(user));
-
-        getRedirectStrategy().sendRedirect(request, response, getRedirectUrl("http://localhost:9000/login", jwtPair));
     }
 
     String getRedirectUrl(final String baseUrl, final JwtPair tokenPair) {

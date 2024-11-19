@@ -29,13 +29,16 @@ public class RefreshTokenAuthenticationProvider implements AuthenticationProvide
     public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
         String token = (String) authentication.getCredentials();
         String username = tokenProvider.getUserNameFromJwtToken(token);
-        UserDetailsImpl user;
+        UserDetailsImpl userDetails = getUserDetails(username);
+        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+    }
+
+    private UserDetailsImpl getUserDetails(String username) {
         try {
-            user = UserDetailsImpl.build(userService.findByUsername(username));
+            return UserDetailsImpl.build(userService.findByUsername(username));
         } catch (ServiceException e) {
             throw new UsernameNotFoundException("User not found: " + username);
         }
-        return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
     }
 
     @Override
