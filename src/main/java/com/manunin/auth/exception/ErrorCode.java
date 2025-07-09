@@ -1,7 +1,8 @@
 package com.manunin.auth.exception;
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.http.HttpStatus;
+
+import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ErrorCode {
     GENERAL(1, HttpStatus.INTERNAL_SERVER_ERROR),
@@ -11,7 +12,7 @@ public enum ErrorCode {
     ACCESS_DENIED(20, HttpStatus.FORBIDDEN);
 
     private final int code;
-    private HttpStatus status;
+    private final HttpStatus status;
 
     ErrorCode(final int code, final HttpStatus status) {
         this.code = code;
